@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5183569796731985000}
   m_Layer: 0
   m_Name: Player Two
-  m_TagString: Untagged
+  m_TagString: cubeB
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
