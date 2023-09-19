@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - shame
+  - cubeA
+  - cubeB
   layers:
   - Default
   - TransparentFX
