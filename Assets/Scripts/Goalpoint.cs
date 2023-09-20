@@ -21,9 +21,10 @@ public class Goalpoint : MonoBehaviour
         Win();
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "cubeA")
+        if (collision.gameObject.tag == "cubeA")
         {
             cubeA = true;
         }
@@ -32,7 +33,8 @@ public class Goalpoint : MonoBehaviour
             cubeB = true;
         }
     }
-    private void OnCollisionExit2D(Collision2D collision)
+
+    private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "cubeA")
         {
