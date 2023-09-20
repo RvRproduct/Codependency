@@ -226,7 +226,7 @@ public class Controller : MonoBehaviour
                         else
                         {
                             Debug.Log("Swipe Down");
-                            SwitchPlayer();
+                            //SwitchPlayer();
                         }
                     }
                 }
