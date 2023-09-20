@@ -6,10 +6,12 @@ public class Goalpoint : MonoBehaviour
 {
     bool cubeA;
     bool cubeB;
+    public GameObject endscreen;
+    private Transform over;
     // Start is called before the first frame update
     void Start()
     {
-        
+        over = endscreen.transform.Find("end");
     }
 
     // Update is called once per frame
@@ -36,6 +38,7 @@ public class Goalpoint : MonoBehaviour
         {
             Time.timeScale = 0f;
             Debug.Log("You Win");
+            over.gameObject.SetActive(true);
         }
     }
 }

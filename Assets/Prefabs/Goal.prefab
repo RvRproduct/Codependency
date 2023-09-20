@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 2366863505845917395}
   - component: {fileID: 8944441970325687093}
   m_Layer: 0
-  m_Name: Square
+  m_Name: Goal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
