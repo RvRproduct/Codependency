@@ -22,7 +22,7 @@ public class StartMenu : MonoBehaviour
     public void StartGame()
     {
         //AudioSource.PlayClipAtPoint(clip, this.transform.position, 1f);
-        Time.timeScale = 1f;
+        Time.timeScale = 1.0f;
         SceneManager.LoadScene("Game");
 
     }
