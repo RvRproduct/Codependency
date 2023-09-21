@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1180546117334614611}
+  - component: {fileID: 2450597261822317715}
   m_Layer: 0
   m_Name: Shame Spawner
   m_TagString: Untagged
@@ -31,3 +32,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2450597261822317715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5399509966663706460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d1d81c38b62409479e67e3d31cdafbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shameThreshold: 4
+  controller: {fileID: 0}
+  shameBubble: {fileID: 6040710401758930009, guid: 726e0713950ddfd4991521aab4a810cb, type: 3}

@@ -993,6 +993,8 @@ MonoBehaviour:
   virtualCamera: {fileID: 1208032098}
   player: {fileID: 0}
   canThrow: 0
+  playerDist: 4
+  followBounds: 3
 --- !u!1001 &872332908
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1643,6 +1645,67 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1974040532}
   m_SourcePrefab: {fileID: 100100000, guid: e0087f0603a6a5e478c461c1c113f095, type: 3}
+--- !u!1001 &1159381461
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1180546117334614611, guid: 198cca3504c6b8b4dadfb9de6e9e49ff, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -8.26
+      objectReference: {fileID: 0}
+    - target: {fileID: 1180546117334614611, guid: 198cca3504c6b8b4dadfb9de6e9e49ff, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 1180546117334614611, guid: 198cca3504c6b8b4dadfb9de6e9e49ff, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1180546117334614611, guid: 198cca3504c6b8b4dadfb9de6e9e49ff, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1180546117334614611, guid: 198cca3504c6b8b4dadfb9de6e9e49ff, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1180546117334614611, guid: 198cca3504c6b8b4dadfb9de6e9e49ff, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1180546117334614611, guid: 198cca3504c6b8b4dadfb9de6e9e49ff, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1180546117334614611, guid: 198cca3504c6b8b4dadfb9de6e9e49ff, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1180546117334614611, guid: 198cca3504c6b8b4dadfb9de6e9e49ff, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1180546117334614611, guid: 198cca3504c6b8b4dadfb9de6e9e49ff, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2450597261822317715, guid: 198cca3504c6b8b4dadfb9de6e9e49ff, type: 3}
+      propertyPath: controller
+      value: 
+      objectReference: {fileID: 811661920}
+    - target: {fileID: 5399509966663706460, guid: 198cca3504c6b8b4dadfb9de6e9e49ff, type: 3}
+      propertyPath: m_Name
+      value: Shame Spawner
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 198cca3504c6b8b4dadfb9de6e9e49ff, type: 3}
 --- !u!1 &1208032098
 GameObject:
   m_ObjectHideFlags: 0
@@ -3450,3 +3513,4 @@ SceneRoots:
   - {fileID: 2038267038108532438}
   - {fileID: 872332908}
   - {fileID: 306020820}
+  - {fileID: 1159381461}
