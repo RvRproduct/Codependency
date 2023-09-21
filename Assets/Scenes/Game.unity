@@ -1181,6 +1181,9 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8083381430395741276, guid: 8c944e443ef83ef489e3681f0426feb8, type: 3}
+      insertIndex: 1
+      addedObject: {fileID: 944105916}
+    - targetCorrespondingSourceObject: {fileID: 8083381430395741276, guid: 8c944e443ef83ef489e3681f0426feb8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 944105914}
   m_SourcePrefab: {fileID: 100100000, guid: 8c944e443ef83ef489e3681f0426feb8, type: 3}
@@ -1471,6 +1474,19 @@ MonoBehaviour:
   detachDelay: 0.15
   resetDelay: 0.5
   pivot: {fileID: 944105911}
+--- !u!114 &944105916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 944105910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf390bdf36a60394ba2c4e0563c4ba20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  endscreen: {fileID: 1316606223}
 --- !u!1001 &960555934
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1869,9 +1885,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 234614577}
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7809081280253573445, guid: e0087f0603a6a5e478c461c1c113f095, type: 3}
-      insertIndex: 1
-      addedObject: {fileID: 1974040537}
     - targetCorrespondingSourceObject: {fileID: 7809081280253573445, guid: e0087f0603a6a5e478c461c1c113f095, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1974040532}
@@ -3538,19 +3551,6 @@ SpringJoint2D:
   m_Distance: 16.88816
   m_DampingRatio: 0
   m_Frequency: 1
---- !u!114 &1974040537
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1974040522}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf390bdf36a60394ba2c4e0563c4ba20, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  endscreen: {fileID: 1316606223}
 --- !u!1 &2047180355
 GameObject:
   m_ObjectHideFlags: 0
