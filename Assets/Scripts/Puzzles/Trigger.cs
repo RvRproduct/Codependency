@@ -7,6 +7,7 @@ public class Trigger : MonoBehaviour
     // Start is called before the first frame update
     public GameObject door;
     public Animator animator;
+    public Animator animator2;
     void Start()
     {
         
@@ -24,7 +25,7 @@ public class Trigger : MonoBehaviour
         if (collision.gameObject.tag == "cubeA" || collision.gameObject.tag == "cubeB")
         {
             Debug.Log("Here is the triggeer");
-            Destroy(door);
+            animator2.SetTrigger("Door");
             animator.SetTrigger("Press");
         }
 
