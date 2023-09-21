@@ -1118,6 +1118,8 @@ MonoBehaviour:
   virtualCamera: {fileID: 1208032098}
   player: {fileID: 0}
   canThrow: 0
+  playerDist: 4
+  followBounds: 3
 --- !u!1001 &872332908
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2751,6 +2753,75 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 7519015984095176227, guid: a5391e4c941519b4ab35ee6d452f7c3b, type: 3}
   m_PrefabInstance: {fileID: 6027687045641348561}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1570742031
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5314807896638022557, guid: 5fe71613f1a0af24281cba72bf193ee3, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.3447
+      objectReference: {fileID: 0}
+    - target: {fileID: 5314807896638022557, guid: 5fe71613f1a0af24281cba72bf193ee3, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.3447
+      objectReference: {fileID: 0}
+    - target: {fileID: 5314807896638022557, guid: 5fe71613f1a0af24281cba72bf193ee3, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.3447
+      objectReference: {fileID: 0}
+    - target: {fileID: 5314807896638022557, guid: 5fe71613f1a0af24281cba72bf193ee3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -7.9071503
+      objectReference: {fileID: 0}
+    - target: {fileID: 5314807896638022557, guid: 5fe71613f1a0af24281cba72bf193ee3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -4.11
+      objectReference: {fileID: 0}
+    - target: {fileID: 5314807896638022557, guid: 5fe71613f1a0af24281cba72bf193ee3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5314807896638022557, guid: 5fe71613f1a0af24281cba72bf193ee3, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5314807896638022557, guid: 5fe71613f1a0af24281cba72bf193ee3, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5314807896638022557, guid: 5fe71613f1a0af24281cba72bf193ee3, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5314807896638022557, guid: 5fe71613f1a0af24281cba72bf193ee3, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5314807896638022557, guid: 5fe71613f1a0af24281cba72bf193ee3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5314807896638022557, guid: 5fe71613f1a0af24281cba72bf193ee3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5314807896638022557, guid: 5fe71613f1a0af24281cba72bf193ee3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6683071903997283752, guid: 5fe71613f1a0af24281cba72bf193ee3, type: 3}
+      propertyPath: m_Name
+      value: SpikeShooter (2)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5fe71613f1a0af24281cba72bf193ee3, type: 3}
 --- !u!1 &1627827734
 GameObject:
   m_ObjectHideFlags: 0
@@ -3929,3 +4000,4 @@ SceneRoots:
   - {fileID: 1275526489}
   - {fileID: 960555934}
   - {fileID: 1726846241}
+  - {fileID: 1570742031}
