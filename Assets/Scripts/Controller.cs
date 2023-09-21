@@ -11,6 +11,12 @@ using TouchPhase = UnityEngine.TouchPhase;
 
 public class Controller : MonoBehaviour
 {
+    public static Controller Instance;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
     // Player Properites
     private float horizontal;
     private float speed = 5f;
@@ -27,17 +33,22 @@ public class Controller : MonoBehaviour
     [SerializeField] private GameObject activePlayer;
     [SerializeField] private GameObject nonActivePlayer;
     [SerializeField] private GameObject controlUI;
+    [SerializeField] private GameObject pivot;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private TMP_Text textFollow;
+
+    // Throwing
+    private ThrowHandler throwHandler;
 
     // Camera
     [SerializeField] private GameObject virtualCamera;
     private new CinemachineVirtualCamera camera;
 
     // Current Player
-    private Rigidbody2D player;
+    public Rigidbody2D player;
     private Rigidbody2D nonPlayer;
+    public bool canThrow;
 
     // Follow?
     private GameObject follow;
@@ -53,6 +64,8 @@ public class Controller : MonoBehaviour
 
     void Start()
     {
+        // Throwing
+        throwHandler = ThrowHandler.Instance;
         // Setup follow
         follow = controlUI.transform.Find("Follow").gameObject;
         followButton = follow.GetComponent<Button>();
@@ -78,16 +91,22 @@ public class Controller : MonoBehaviour
     void Update()
     {
         UpdateCamera();
-        SwipeTouch();
-        ScreenTouch();
-        FlipDirection();
-        FollowPlayer();
+        if (!canThrow)
+        {
+            SwipeTouch();
+            ScreenTouch();
+            FlipDirection();
+            FollowPlayer();
+        }
     }
 
     void FixedUpdate()
     {
-        ToggleFollow();
-        ClickActions();
+        if (!canThrow)
+        {
+            ToggleFollow();
+            ClickActions();
+        }
     }
 
 
@@ -159,7 +178,7 @@ public class Controller : MonoBehaviour
                 // Debug.Log("NOT touching screen");
                 horizontal = 0f;
                 player.velocity = new Vector2(horizontal, player.velocity.y);
-                nonPlayer.velocity = new Vector2(horizontal * speed, nonPlayer.velocity.y);
+                // nonPlayer.velocity = new Vector2(horizontal * speed, nonPlayer.velocity.y);
             }
         }
     }
@@ -225,7 +244,26 @@ public class Controller : MonoBehaviour
                         }
                         else
                         {
+                            
                             Debug.Log("Swipe Down");
+                            
+                            if (followPlayer)
+                            {
+                                if (nonPlayer.GetComponent<SpringJoint2D>().enabled == false)
+                                {
+                                    throwHandler.ResetPlayer();
+                                }
+                                canThrow = true;
+                                followPlayer = false;
+                                ToggleFollow();
+                                player.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+                                player.GetComponent<Collider2D>().enabled = false;
+                                player.GetComponent<ThrowHandler>().playerB = nonActivePlayer;
+                                player.GetComponent<ThrowHandler>().enabled = true;
+
+                            }
+                            
+                  
                             //SwitchPlayer();
                         }
                     }
@@ -261,14 +299,18 @@ public class Controller : MonoBehaviour
         {
             if (isFacingRight)
             {
-                if (nonPlayer.transform.position.x != (player.transform.position.x - 4))
+                if (nonPlayer.transform.position.x != (player.transform.position.x - 2))
                 {
-                    nonPlayer.transform.position = new Vector2((player.transform.position.x - 4), nonPlayer.transform.position.y);
+                    nonPlayer.transform.position = new Vector2((player.transform.position.x - 2), nonPlayer.transform.position.y);
+                    // horizontal = 1f;
+                    // nonPlayer.velocity = new Vector2(horizontal, player.velocity.x);
                 }
             }
             else
             {
-                nonPlayer.transform.position = new Vector2((player.transform.position.x + 4), nonPlayer.transform.position.y);
+                nonPlayer.transform.position = new Vector2((player.transform.position.x + 2), nonPlayer.transform.position.y);
+                // horizontal = -1f;
+                // nonPlayer.velocity = new Vector2(horizontal, player.velocity.x);
             }
 
         }
@@ -286,7 +328,6 @@ public class Controller : MonoBehaviour
         {
             textFollow.text = "Not Following";
         }
-        Debug.Log("SHOW ME " + followPlayer);
     }
 
 
