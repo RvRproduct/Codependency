@@ -46,7 +46,7 @@ public class Controller : MonoBehaviour
     private new CinemachineVirtualCamera camera;
 
     // Current Player
-    private Rigidbody2D player;
+    public Rigidbody2D player;
     private Rigidbody2D nonPlayer;
     public bool canThrow;
 
@@ -94,9 +94,9 @@ public class Controller : MonoBehaviour
         if (!canThrow)
         {
             SwipeTouch();
-            // ScreenTouch();
+            ScreenTouch();
             FlipDirection();
-            // FollowPlayer();
+            FollowPlayer();
         }
     }
 
@@ -244,12 +244,26 @@ public class Controller : MonoBehaviour
                         }
                         else
                         {
-                            GameObject pivotClone;
+                            
                             Debug.Log("Swipe Down");
-                            canThrow = true;
-                            pivotClone = Instantiate(pivot, player.position, Quaternion.identity);
-                            pivotClone.GetComponent<ThrowHandler>().playerB = nonActivePlayer;
-                            pivotClone.GetComponent<ThrowHandler>().pivot = pivotClone.GetComponent<Rigidbody2D>();
+                            
+                            if (followPlayer)
+                            {
+                                if (nonPlayer.GetComponent<SpringJoint2D>().enabled == false)
+                                {
+                                    throwHandler.ResetPlayer();
+                                }
+                                canThrow = true;
+                                followPlayer = false;
+                                ToggleFollow();
+                                player.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+                                player.GetComponent<Collider2D>().enabled = false;
+                                player.GetComponent<ThrowHandler>().playerB = nonActivePlayer;
+                                player.GetComponent<ThrowHandler>().enabled = true;
+
+                            }
+                            
+                  
                             //SwitchPlayer();
                         }
                     }
@@ -285,14 +299,18 @@ public class Controller : MonoBehaviour
         {
             if (isFacingRight)
             {
-                if (nonPlayer.transform.position.x != (player.transform.position.x - 4))
+                if (nonPlayer.transform.position.x != (player.transform.position.x - 2))
                 {
-                    nonPlayer.transform.position = new Vector2((player.transform.position.x - 4), nonPlayer.transform.position.y);
+                    nonPlayer.transform.position = new Vector2((player.transform.position.x - 2), nonPlayer.transform.position.y);
+                    // horizontal = 1f;
+                    // nonPlayer.velocity = new Vector2(horizontal, player.velocity.x);
                 }
             }
             else
             {
-                nonPlayer.transform.position = new Vector2((player.transform.position.x + 4), nonPlayer.transform.position.y);
+                nonPlayer.transform.position = new Vector2((player.transform.position.x + 2), nonPlayer.transform.position.y);
+                // horizontal = -1f;
+                // nonPlayer.velocity = new Vector2(horizontal, player.velocity.x);
             }
 
         }

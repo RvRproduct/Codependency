@@ -16,6 +16,7 @@ public class ThrowHandler : MonoBehaviour
 
     public GameObject playerB;
     public float detachDelay = 0.15f;
+    public float resetDelay = 0.5f;
     public Rigidbody2D pivot;
 
     private Rigidbody2D currentPlayerRigidbody;
@@ -33,6 +34,7 @@ public class ThrowHandler : MonoBehaviour
         controller = Controller.Instance;
         Debug.Log("Hello already ran");
         playerB.transform.position = pivot.position;
+        playerB.transform.rotation = Quaternion.identity;
         //playerInstance = Instantiate(playerB, pivot.position, Quaternion.identity);
 
         currentPlayerRigidbody = playerB.GetComponent<Rigidbody2D>();
@@ -40,6 +42,8 @@ public class ThrowHandler : MonoBehaviour
 
         currentPlayerSpringJoint.connectedBody = pivot;
         mainCamera = Camera.main;
+
+        
     }
 
     void OnEnable()
@@ -63,7 +67,6 @@ public class ThrowHandler : MonoBehaviour
         {
             if (isDragging)
             {
-                Debug.Log("Is Dragging");
                 LaunchPlayer();
             }
 
@@ -109,8 +112,9 @@ public class ThrowHandler : MonoBehaviour
 
     void LaunchPlayer()
     {
+        Debug.Log("Is Dragging");
         currentPlayerRigidbody.isKinematic = false;
-        currentPlayerRigidbody = null;
+        // currentPlayerRigidbody = null;
 
         Invoke(nameof(DetachPlayer), detachDelay);
 
@@ -119,9 +123,26 @@ public class ThrowHandler : MonoBehaviour
     void DetachPlayer()
     {
         currentPlayerSpringJoint.enabled = false;
-        currentPlayerSpringJoint = null;
+        // currentPlayerSpringJoint = null;
         controller.canThrow = false;
-        Destroy(GameObject.Find("Pivot(Clone)"));
+        Invoke(nameof(SolidPlayer), resetDelay);
+        controller.player.GetComponent<ThrowHandler>().enabled = false;
+
+
+    }
+
+    void SolidPlayer()
+    {
+        controller.player.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+        controller.player.GetComponent<Collider2D>().enabled = true;
+    }
+
+    public void ResetPlayer()
+    {
+        currentPlayerSpringJoint.enabled = true;
+        playerB.transform.position = pivot.position;
+        playerB.transform.rotation = Quaternion.identity;
+        currentPlayerSpringJoint.connectedBody = pivot;
 
     }
 }
