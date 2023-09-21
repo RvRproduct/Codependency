@@ -27,6 +27,7 @@ public class Controller : MonoBehaviour
     [SerializeField] private GameObject activePlayer;
     [SerializeField] private GameObject nonActivePlayer;
     [SerializeField] private GameObject controlUI;
+    [SerializeField] private GameObject pivot;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private TMP_Text textFollow;
@@ -38,6 +39,7 @@ public class Controller : MonoBehaviour
     // Current Player
     private Rigidbody2D player;
     private Rigidbody2D nonPlayer;
+    private bool canThrow = false;
 
     // Follow?
     private GameObject follow;
@@ -226,7 +228,8 @@ public class Controller : MonoBehaviour
                         else
                         {
                             Debug.Log("Swipe Down");
-                            //SwitchPlayer();
+                           // Instantiate(pivot, );
+                        
                         }
                     }
                 }
