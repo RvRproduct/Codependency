@@ -28,7 +28,7 @@ public class Spike : MonoBehaviour
     }
     private void Lose()
     {
-        //Time.timeScale = 0f;
+        Time.timeScale = 0f;
         Debug.Log("You Lose");
         over.gameObject.SetActive(true);
     }

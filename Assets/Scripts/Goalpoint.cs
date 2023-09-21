@@ -12,7 +12,9 @@ public class Goalpoint : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Time.timeScale = 1.0f;
         over = endscreen.transform.Find("win");
+
     }
 
     // Update is called once per frame
@@ -50,7 +52,7 @@ public class Goalpoint : MonoBehaviour
     {
         if (cubeA && cubeB) 
         {
-            //Time.timeScale = 0f;
+            Time.timeScale = 0f;
             Debug.Log("You Win");
             over.gameObject.SetActive(true);
         }
