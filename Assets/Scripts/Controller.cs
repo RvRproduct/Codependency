@@ -30,8 +30,8 @@ public class Controller : MonoBehaviour
     private float dragDistance;
 
     // Managing Game Objects
-    [SerializeField] private GameObject activePlayer;
-    [SerializeField] private GameObject nonActivePlayer;
+    [SerializeField] public GameObject activePlayer;
+    [SerializeField] public GameObject nonActivePlayer;
     [SerializeField] private GameObject controlUI;
     [SerializeField] private GameObject pivot;
     [SerializeField] private Transform groundCheck;
@@ -59,11 +59,15 @@ public class Controller : MonoBehaviour
 
 
 
-
+    // distance between player and partner, used for following and shame spawning
+    public float playerDist = 4f;
+    public float followBounds = 3f;
 
 
     void Start()
     {
+        Application.targetFrameRate = 60;
+
         // Throwing
         throwHandler = ThrowHandler.Instance;
         // Setup follow
@@ -102,6 +106,9 @@ public class Controller : MonoBehaviour
 
     void FixedUpdate()
     {
+        // find distance between partner and player. Other systems rely on this, so always needs to happen
+        playerDist = Vector2.Distance(activePlayer.transform.position, nonPlayer.transform.position);
+
         if (!canThrow)
         {
             ToggleFollow();
@@ -130,21 +137,12 @@ public class Controller : MonoBehaviour
                 Debug.Log("HELD L");
                 horizontal = -1f;
                 player.velocity = new Vector2(horizontal * speed, player.velocity.y);
-                if (followPlayer)
-                {
-                    nonPlayer.velocity = new Vector2(horizontal * speed, nonPlayer.velocity.y);
-                }
-
             }
             else if (touch.position.x >= 2 * splittedScreen && touch.phase == TouchPhase.Stationary)
             {
                 Debug.Log("HELD R");
                 horizontal = 1f;
                 player.velocity = new Vector2(horizontal * speed, player.velocity.y);
-                if (followPlayer)
-                {
-                    nonPlayer.velocity = new Vector2(horizontal * speed, nonPlayer.velocity.y);
-                }
             }
 
             else if (touch.position.x >= splittedScreen && touch.position.x < 2 * splittedScreen)
@@ -152,10 +150,6 @@ public class Controller : MonoBehaviour
                 Debug.Log("Middle");
                 horizontal = 0f;
                 player.velocity = new Vector2(horizontal, player.velocity.y);
-                if (followPlayer)
-                {
-                    nonPlayer.velocity = new Vector2(horizontal * speed, nonPlayer.velocity.y);
-                }
             }
 
         }
@@ -297,20 +291,11 @@ public class Controller : MonoBehaviour
     {
         if (followPlayer)
         {
-            if (isFacingRight)
+            // distance was calculated in FixedUpdate 
+            // if distance greater than a certain boundary, follow behind
+            if (playerDist > followBounds)
             {
-                if (nonPlayer.transform.position.x != (player.transform.position.x - 2))
-                {
-                    nonPlayer.transform.position = new Vector2((player.transform.position.x - 2), nonPlayer.transform.position.y);
-                    // horizontal = 1f;
-                    // nonPlayer.velocity = new Vector2(horizontal, player.velocity.x);
-                }
-            }
-            else
-            {
-                nonPlayer.transform.position = new Vector2((player.transform.position.x + 2), nonPlayer.transform.position.y);
-                // horizontal = -1f;
-                // nonPlayer.velocity = new Vector2(horizontal, player.velocity.x);
+                nonPlayer.transform.position = Vector2.MoveTowards(nonPlayer.transform.position, player.transform.position, playerDist * Time.deltaTime);
             }
 
         }
