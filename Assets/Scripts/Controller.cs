@@ -295,7 +295,8 @@ public class Controller : MonoBehaviour
             // if distance greater than a certain boundary, follow behind
             if (playerDist > followBounds)
             {
-                nonPlayer.transform.position = Vector2.MoveTowards(nonPlayer.transform.position, player.transform.position, playerDist * Time.deltaTime);
+                float xPos = Vector2.MoveTowards(nonPlayer.transform.position, player.transform.position, playerDist * Time.deltaTime).x;
+                nonPlayer.transform.position = new Vector2(xPos, nonPlayer.transform.position.y);
             }
 
         }
