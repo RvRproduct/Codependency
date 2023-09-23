@@ -15,17 +15,17 @@ public class ThrowHandler : MonoBehaviour
     }
 
     public GameObject playerB;
+    public GameObject arrow;
     public float detachDelay = 0.15f;
     public float resetDelay = 0.5f;
     public Rigidbody2D pivot;
 
+    private Rigidbody2D arrowRigidbody;
     private Rigidbody2D currentPlayerRigidbody;
     private SpringJoint2D currentPlayerSpringJoint;
 
     private Camera mainCamera;
     private bool isDragging;
-
-    // private GameObject playerInstance;
 
     private Controller controller;
 
@@ -35,8 +35,7 @@ public class ThrowHandler : MonoBehaviour
         Debug.Log("Hello already ran");
         playerB.transform.position = pivot.position;
         playerB.transform.rotation = Quaternion.identity;
-        //playerInstance = Instantiate(playerB, pivot.position, Quaternion.identity);
-
+    
         currentPlayerRigidbody = playerB.GetComponent<Rigidbody2D>();
         currentPlayerSpringJoint = playerB.GetComponent<SpringJoint2D>();
 
@@ -101,7 +100,6 @@ public class ThrowHandler : MonoBehaviour
         Vector3 worldPosition = mainCamera.ScreenToWorldPoint(touchPosition);
 
         currentPlayerRigidbody.position = worldPosition;
-
         Debug.Log("Here is the World P " + worldPosition);
 
 
