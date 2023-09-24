@@ -10,9 +10,11 @@ public class SpikeShooter : MonoBehaviour
     public float cooldown;
     public int lifespan;
     private float index;
+    public bool shutdown;
     // Start is called before the first frame update
     void Start()
     {
+        shutdown = false;
         fireplace = this.transform.Find("FiringPlace");
         index = cooldown;
     }
@@ -20,7 +22,10 @@ public class SpikeShooter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CountingDown();
+        if (!shutdown)
+        {
+            CountingDown();
+        }
     }
 
     private void CountingDown()
