@@ -7,10 +7,21 @@ public class TargetIndicator : MonoBehaviour
 {
     public Transform Target;
     public float HideDistance;
+    public float ShowDistance;
+    public float angle;
+
+    public static TargetIndicator Instance;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     void Update()
     {
         var dir = Target.position - transform.position;
+
+        ShowDistance = dir.magnitude; 
 
         if (dir.magnitude > HideDistance)
         {
@@ -20,7 +31,7 @@ public class TargetIndicator : MonoBehaviour
         {
             SetChildrenActive(true);
 
-            var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            angle = (Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg);
             transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         }
         
