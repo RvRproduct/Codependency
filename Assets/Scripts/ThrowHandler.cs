@@ -118,7 +118,8 @@ public class ThrowHandler : MonoBehaviour
 
     void LaunchPlayerNew()
     {
-        currentPlayerRigidbody.velocity = new Vector2(Mathf.Cos(Mathf.PI * 2 * (arrowRotation/360)) * 10, Mathf.Sin(Mathf.PI * 2 * (arrowRotation/360)) * 10);
+        currentPlayerRigidbody.velocity = new Vector2(Mathf.Cos(Mathf.PI * 2 * (arrowRotation/360)) * (targetIndicator.ShowDistance * 2.5f),
+            Mathf.Sin(Mathf.PI * 2 * (arrowRotation/360)) * (targetIndicator.ShowDistance * 2.5f));
         currentPlayerRigidbody.isKinematic = false;
         // Invoke(nameof(DetachPlayerNew), detachDelay);
     }
