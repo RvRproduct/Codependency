@@ -55,6 +55,11 @@ public class ThrowHandler : MonoBehaviour
     void OnEnable()
     {
         EnhancedTouchSupport.Enable();
+        playerB.transform.position = new Vector2(pivot.position.x, (pivot.position.y + 1.5f));
+        playerB.transform.rotation = Quaternion.identity;
+        arrow.transform.position = pivot.position;
+        arrowRotation = targetIndicator.angle;
+        currentPlayerRigidbody.isKinematic = true;
     }
 
     void OnDisable()
@@ -121,12 +126,15 @@ public class ThrowHandler : MonoBehaviour
         currentPlayerRigidbody.velocity = new Vector2(Mathf.Cos(Mathf.PI * 2 * (arrowRotation/360)) * (targetIndicator.ShowDistance * 2.5f),
             Mathf.Sin(Mathf.PI * 2 * (arrowRotation/360)) * (targetIndicator.ShowDistance * 2.5f));
         currentPlayerRigidbody.isKinematic = false;
-        // Invoke(nameof(DetachPlayerNew), detachDelay);
+        Invoke(nameof(DetachPlayerNew), detachDelay);
     }
 
     void DetachPlayerNew()
     {
-        currentPlayerRigidbody.velocity = new Vector2 (0, 0);
+        SolidPlayer();
+        controller.canThrow = false;
+        // controller.followPlayer = true;
+        controller.player.GetComponent<ThrowHandler>().enabled = false;
     }
 
     void LaunchPlayer()
