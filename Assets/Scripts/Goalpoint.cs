@@ -9,6 +9,7 @@ public class Goalpoint : MonoBehaviour
     bool cubeB;
     public GameObject endscreen;
     private Transform over;
+    public int lvl;
     // Start is called before the first frame update
     void Start()
     {
@@ -52,15 +53,38 @@ public class Goalpoint : MonoBehaviour
     {
         if (cubeA && cubeB) 
         {
-            Time.timeScale = 0f;
-            Debug.Log("You Win");
-            over.gameObject.SetActive(true);
+            if (lvl == 1)
+            {
+                Time.timeScale = 0f;
+                SceneManager.LoadScene("Level 2");
+            }
+            else if (lvl == 2) {
+                Time.timeScale = 0f;
+                SceneManager.LoadScene("Level 3");
+            }
+            else
+            {
+                Time.timeScale = 0f;
+                //Debug.Log("You Win");
+                over.gameObject.SetActive(true);
+            }
         }
     }
     public void Playagain()
     {
         Time.timeScale = 1.0f;
-        SceneManager.LoadScene("Game");
+        if (lvl == 1)
+        {
+            SceneManager.LoadScene("Level 1");
+        }
+        else if (lvl == 2)
+        {
+            SceneManager.LoadScene("Level 2");
+        }
+        else if (lvl == 3)
+        {
+            SceneManager.LoadScene("Level 3");
+        }
     }
 
     public void Menu()
