@@ -7,14 +7,13 @@ public class ColorChange : MonoBehaviour
 {
     [SerializeField] SpriteRenderer square;
     [SerializeField] Light2D light;
-    [SerializeField] Vector3 SHAME = new Vector3(94, 0, 152);
-    Vector3 WHITE = new Vector3(255, 255, 255);
-    Vector3 diff;
+    [SerializeField] Color SHAME = new Color(0.3686275f, 0, 0.5960785f);
+    Color diff;
 
     // Start is called before the first frame update
     void Start()
     {
-        diff = WHITE - SHAME;
+        diff = Color.white - SHAME;
     }
 
     // Update is called once per frame
@@ -26,9 +25,9 @@ public class ColorChange : MonoBehaviour
     // takes in the proportion of shame the player has taken to calculate the new color
     public void UpdateColor(float shameProp)
     {
-        Vector3 shadeDelta = diff * shameProp;
-        Vector3 shade = WHITE - shadeDelta;
-        square.color = new Color(shade.x, shade.y, shade.z);
-        light.color = new Color(shade.x, shade.y, shade.z);
+        Color shadeDelta = diff * shameProp;
+        Color shade = Color.white - shadeDelta;
+        square.color = shade;
+        light.color = shade;
     }
 }
