@@ -1101,8 +1101,6 @@ MonoBehaviour:
   canThrow: 0
   playerDist: 4
   followBounds: 3
-  SHAME_LIMIT: 20
-  shameDamage: 4
 --- !u!1001 &872332908
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1111,6 +1109,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 363094462142928874, guid: 8c944e443ef83ef489e3681f0426feb8, type: 3}
+      propertyPath: SHAME.b
+      value: 0.048902176
+      objectReference: {fileID: 0}
+    - target: {fileID: 363094462142928874, guid: 8c944e443ef83ef489e3681f0426feb8, type: 3}
+      propertyPath: SHAME.r
+      value: 0.59607846
+      objectReference: {fileID: 0}
     - target: {fileID: 3906003104191044905, guid: 8c944e443ef83ef489e3681f0426feb8, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -1478,6 +1484,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   endscreen: {fileID: 1316606223}
+  SHAME_LIMIT: 20
+  shameDamage: 1
 --- !u!1001 &971789134
 PrefabInstance:
   m_ObjectHideFlags: 0

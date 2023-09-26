@@ -37,7 +37,7 @@ public class ShameBubble : MonoBehaviour
         if (collision.gameObject == player && controller.playerDist > shameThreshold)
         {
             Destroy(gameObject);
-            controller.ShamePlayer();
+            player.GetComponent<PlayerB>().ShamePlayer();
         }
         if(collision.gameObject == partner && controller.playerDist <= shameThreshold)
         {

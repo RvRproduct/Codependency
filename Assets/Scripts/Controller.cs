@@ -63,11 +63,7 @@ public class Controller : MonoBehaviour
     public float playerDist = 4f;
     public float followBounds = 3f;
 
-    // shame stuff
-
-    public float SHAME_LIMIT = 20;
-    public float shameDamage = 1;
-    float shameLevel = 0;
+    
 
     void Start()
     {
@@ -80,6 +76,7 @@ public class Controller : MonoBehaviour
         followButton = follow.GetComponent<Button>();
         // Setup Touch, Player, Camera
         dragDistance = Screen.height * 30 / 100;
+        activePlayer.GetComponent<PlayerB>().controller = this;
         player = activePlayer.GetComponent<Rigidbody2D>();
         nonPlayer = nonActivePlayer.GetComponent<Rigidbody2D>();
         camera = virtualCamera.GetComponent<CinemachineVirtualCamera>();
@@ -280,18 +277,6 @@ public class Controller : MonoBehaviour
         camera.Follow = activePlayer.transform;
     }
 
-    void SwitchPlayer()
-    {
-        GameObject copyPlayer = activePlayer;
-        activePlayer = nonActivePlayer;
-        nonActivePlayer = copyPlayer;
-        player = activePlayer.GetComponent<Rigidbody2D>();
-        nonPlayer = nonActivePlayer.GetComponent<Rigidbody2D>();
-        horizontal = 0f;
-        nonPlayer.velocity = new Vector2(horizontal, player.velocity.y);
-
-    }
-
     void FollowPlayer()
     {
         if (followPlayer)
@@ -320,16 +305,6 @@ public class Controller : MonoBehaviour
             textFollow.text = "Not Following";
         }
     }
-
-    public void ShamePlayer()
-    {
-        // adjust health
-        shameLevel += shameDamage;
-
-        // adjust color
-        activePlayer.GetComponent<ColorChange>().UpdateColor(shameLevel / SHAME_LIMIT);
-    }
-
 
 }
 
