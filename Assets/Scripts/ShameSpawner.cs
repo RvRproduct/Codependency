@@ -55,8 +55,11 @@ public class ShameSpawner : MonoBehaviour
         float yDif = Random.Range(-1f, 1f);
         Vector2 spawnPoint = new Vector2(transform.position.x + xDif, transform.position.y + yDif);
 
-        GameObject newBubble = Instantiate(shameBubble, spawnPoint, Quaternion.identity);
-        newBubble.GetComponent<ShameBubble>().player = controller.activePlayer;
-        newBubble.GetComponent<ShameBubble>().partner = controller.nonActivePlayer;
+        ShameBubble newBubble = Instantiate(shameBubble, spawnPoint, Quaternion.identity).GetComponent<ShameBubble>();
+        
+        newBubble.player = controller.activePlayer;
+        newBubble.partner = controller.nonActivePlayer;
+        newBubble.controller = controller;
+        newBubble.shameThreshold = shameThreshold;
     }
 }

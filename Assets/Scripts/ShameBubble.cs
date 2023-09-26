@@ -5,8 +5,10 @@ using UnityEngine;
 public class ShameBubble : MonoBehaviour
 {
     public float speed = 1f;
+    public float shameThreshold = 4;
     public GameObject player;
     public GameObject partner;
+    public Controller controller;
 
     // Start is called before the first frame update
     void Start()
@@ -17,13 +19,27 @@ public class ShameBubble : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // move toward player
-        transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
+        if(controller.playerDist <= shameThreshold)
+        {
+            // move toward partner
+            transform.position = Vector2.MoveTowards(transform.position, partner.transform.position, speed * Time.deltaTime);
+        }
+        else
+        {
+            // move toward player
+            transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
+        }
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject == player || collision.gameObject == partner)
+        if (collision.gameObject == player && controller.playerDist > shameThreshold)
+        {
+            Destroy(gameObject);
+            player.GetComponent<PlayerB>().ShamePlayer();
+        }
+        if(collision.gameObject == partner && controller.playerDist <= shameThreshold)
         {
             Destroy(gameObject);
         }
