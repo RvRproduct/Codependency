@@ -241,12 +241,12 @@ public class Controller : MonoBehaviour
                             
                             Debug.Log("Swipe Down");
                             
-                            if (followPlayer)
+                            if (followPlayer && IsGrounded())
                             {
-                                if (nonPlayer.GetComponent<SpringJoint2D>().enabled == false)
-                                {
-                                    throwHandler.ResetPlayer();
-                                }
+                                //if (nonPlayer.GetComponent<SpringJoint2D>().enabled == false)
+                                //{
+                                //    throwHandler.ResetPlayer();
+                                //}
                                 canThrow = true;
                                 followPlayer = false;
                                 ToggleFollow();
@@ -273,18 +273,6 @@ public class Controller : MonoBehaviour
     void UpdateCamera()
     {
         camera.Follow = activePlayer.transform;
-    }
-
-    void SwitchPlayer()
-    {
-        GameObject copyPlayer = activePlayer;
-        activePlayer = nonActivePlayer;
-        nonActivePlayer = copyPlayer;
-        player = activePlayer.GetComponent<Rigidbody2D>();
-        nonPlayer = nonActivePlayer.GetComponent<Rigidbody2D>();
-        horizontal = 0f;
-        nonPlayer.velocity = new Vector2(horizontal, player.velocity.y);
-
     }
 
     void FollowPlayer()
@@ -357,5 +345,18 @@ public class Controller : MonoBehaviour
 //    {
 //        horizontal = 0f;
 //    }
+
+//}
+
+
+//void SwitchPlayer()
+//{
+//    GameObject copyPlayer = activePlayer;
+//    activePlayer = nonActivePlayer;
+//    nonActivePlayer = copyPlayer;
+//    player = activePlayer.GetComponent<Rigidbody2D>();
+//    nonPlayer = nonActivePlayer.GetComponent<Rigidbody2D>();
+//    horizontal = 0f;
+//    nonPlayer.velocity = new Vector2(horizontal, player.velocity.y);
 
 //}
