@@ -63,6 +63,7 @@ public class Controller : MonoBehaviour
     public float playerDist = 4f;
     public float followBounds = 3f;
 
+    
 
     void Start()
     {
@@ -75,6 +76,7 @@ public class Controller : MonoBehaviour
         followButton = follow.GetComponent<Button>();
         // Setup Touch, Player, Camera
         dragDistance = Screen.height * 30 / 100;
+        activePlayer.GetComponent<PlayerB>().controller = this;
         player = activePlayer.GetComponent<Rigidbody2D>();
         nonPlayer = nonActivePlayer.GetComponent<Rigidbody2D>();
         camera = virtualCamera.GetComponent<CinemachineVirtualCamera>();
@@ -241,12 +243,12 @@ public class Controller : MonoBehaviour
                             
                             Debug.Log("Swipe Down");
                             
-                            if (followPlayer)
+                            if (followPlayer && IsGrounded())
                             {
-                                if (nonPlayer.GetComponent<SpringJoint2D>().enabled == false)
-                                {
-                                    throwHandler.ResetPlayer();
-                                }
+                                //if (nonPlayer.GetComponent<SpringJoint2D>().enabled == false)
+                                //{
+                                //    throwHandler.ResetPlayer();
+                                //}
                                 canThrow = true;
                                 followPlayer = false;
                                 ToggleFollow();
@@ -275,18 +277,6 @@ public class Controller : MonoBehaviour
         camera.Follow = activePlayer.transform;
     }
 
-    void SwitchPlayer()
-    {
-        GameObject copyPlayer = activePlayer;
-        activePlayer = nonActivePlayer;
-        nonActivePlayer = copyPlayer;
-        player = activePlayer.GetComponent<Rigidbody2D>();
-        nonPlayer = nonActivePlayer.GetComponent<Rigidbody2D>();
-        horizontal = 0f;
-        nonPlayer.velocity = new Vector2(horizontal, player.velocity.y);
-
-    }
-
     void FollowPlayer()
     {
         if (followPlayer)
@@ -295,7 +285,8 @@ public class Controller : MonoBehaviour
             // if distance greater than a certain boundary, follow behind
             if (playerDist > followBounds)
             {
-                nonPlayer.transform.position = Vector2.MoveTowards(nonPlayer.transform.position, player.transform.position, playerDist * Time.deltaTime);
+                float xPos = Vector2.MoveTowards(nonPlayer.transform.position, player.transform.position, playerDist * Time.deltaTime).x;
+                nonPlayer.transform.position = new Vector2(xPos, nonPlayer.transform.position.y);
             }
 
         }
@@ -314,7 +305,6 @@ public class Controller : MonoBehaviour
             textFollow.text = "Not Following";
         }
     }
-
 
 }
 
@@ -357,5 +347,18 @@ public class Controller : MonoBehaviour
 //    {
 //        horizontal = 0f;
 //    }
+
+//}
+
+
+//void SwitchPlayer()
+//{
+//    GameObject copyPlayer = activePlayer;
+//    activePlayer = nonActivePlayer;
+//    nonActivePlayer = copyPlayer;
+//    player = activePlayer.GetComponent<Rigidbody2D>();
+//    nonPlayer = nonActivePlayer.GetComponent<Rigidbody2D>();
+//    horizontal = 0f;
+//    nonPlayer.velocity = new Vector2(horizontal, player.velocity.y);
 
 //}
