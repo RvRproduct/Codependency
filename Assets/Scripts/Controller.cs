@@ -63,6 +63,11 @@ public class Controller : MonoBehaviour
     public float playerDist = 4f;
     public float followBounds = 3f;
 
+    // shame stuff
+
+    public float SHAME_LIMIT = 20;
+    public float shameDamage = 1;
+    float shameLevel = 0;
 
     void Start()
     {
@@ -314,6 +319,15 @@ public class Controller : MonoBehaviour
         {
             textFollow.text = "Not Following";
         }
+    }
+
+    public void ShamePlayer()
+    {
+        // adjust health
+        shameLevel += shameDamage;
+
+        // adjust color
+        activePlayer.GetComponent<ColorChange>().UpdateColor(shameLevel / SHAME_LIMIT);
     }
 
 

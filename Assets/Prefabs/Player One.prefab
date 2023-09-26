@@ -97,8 +97,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.0011999905, y: 0.00069999695, z: 0}
-    m_Extent: {x: 0.997, y: 1.0055, z: 0}
+    m_Center: {x: 0.002550006, y: 0.007000029, z: 0}
+    m_Extent: {x: 1.00375, y: 0.9991, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -124,6 +124,7 @@ GameObject:
   - component: {fileID: 5781683799456786840}
   - component: {fileID: 8349718978031457632}
   - component: {fileID: 127206610970971045}
+  - component: {fileID: 363094462142928874}
   m_Layer: 7
   m_Name: Player One
   m_TagString: Untagged
@@ -221,6 +222,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &363094462142928874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8083381430395741276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e65f478494de78641a20772f1661f92c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  square: {fileID: 7766623005264184420}
+  light: {fileID: 8372336383606162034}
+  SHAME: {x: 94, y: 0, z: 152}
 --- !u!1 &8175816308322539307
 GameObject:
   m_ObjectHideFlags: 0
