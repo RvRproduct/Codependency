@@ -173,8 +173,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.0021999776, y: -0.00015002489, z: 0}
-    m_Extent: {x: 0.6072, y: 0.60275, z: 0}
+    m_Center: {x: 0.002550006, y: -0.0029000044, z: 0}
+    m_Extent: {x: 0.60715, y: 0.6014, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -200,6 +200,7 @@ GameObject:
   - component: {fileID: 7262603309570535092}
   - component: {fileID: 5630627453204248311}
   - component: {fileID: 759488587985089206}
+  - component: {fileID: 581906111355967239}
   m_Layer: 0
   m_Name: Player Two
   m_TagString: cubeB
@@ -295,3 +296,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &581906111355967239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7809081280253573445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef82cec178c6f7a4cb82212c2b717864, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 0.25
+  flash: {r: 0, g: 0.62489486, b: 1, a: 1}
+  square: {fileID: 5169857327290548089}
+  auraLight: {fileID: 6311345473975724739}

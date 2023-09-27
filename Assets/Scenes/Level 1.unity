@@ -1453,7 +1453,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   endscreen: {fileID: 1316606223}
-  controller: {fileID: 0}
+  controller: {fileID: 811661920}
   SHAME_LIMIT: 20
   shameDamage: 1
   healDist: 3
@@ -3192,6 +3192,67 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1131b5050b4d16a4fb322175b583a612, type: 3}
+--- !u!1001 &1925526096
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1180546117334614611, guid: 198cca3504c6b8b4dadfb9de6e9e49ff, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -13.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 1180546117334614611, guid: 198cca3504c6b8b4dadfb9de6e9e49ff, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.93
+      objectReference: {fileID: 0}
+    - target: {fileID: 1180546117334614611, guid: 198cca3504c6b8b4dadfb9de6e9e49ff, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1180546117334614611, guid: 198cca3504c6b8b4dadfb9de6e9e49ff, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1180546117334614611, guid: 198cca3504c6b8b4dadfb9de6e9e49ff, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1180546117334614611, guid: 198cca3504c6b8b4dadfb9de6e9e49ff, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1180546117334614611, guid: 198cca3504c6b8b4dadfb9de6e9e49ff, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1180546117334614611, guid: 198cca3504c6b8b4dadfb9de6e9e49ff, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1180546117334614611, guid: 198cca3504c6b8b4dadfb9de6e9e49ff, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1180546117334614611, guid: 198cca3504c6b8b4dadfb9de6e9e49ff, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2450597261822317715, guid: 198cca3504c6b8b4dadfb9de6e9e49ff, type: 3}
+      propertyPath: controller
+      value: 
+      objectReference: {fileID: 811661920}
+    - target: {fileID: 5399509966663706460, guid: 198cca3504c6b8b4dadfb9de6e9e49ff, type: 3}
+      propertyPath: m_Name
+      value: Shame Spawner
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 198cca3504c6b8b4dadfb9de6e9e49ff, type: 3}
 --- !u!1 &1926478593
 GameObject:
   m_ObjectHideFlags: 0
@@ -3666,6 +3727,7 @@ SceneRoots:
   - {fileID: 1668216680}
   - {fileID: 2038267038108532438}
   - {fileID: 872332908}
+  - {fileID: 1925526096}
   - {fileID: 1662739767}
   - {fileID: 794870254}
   - {fileID: 1254365573}

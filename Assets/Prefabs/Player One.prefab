@@ -97,8 +97,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.0030499995, y: 0.005850017, z: 0}
-    m_Extent: {x: 0.65205, y: 0.64945, z: 0}
+    m_Center: {x: 0.0024999976, y: 0.001850009, z: 0}
+    m_Extent: {x: 0.6533, y: 0.65705, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -235,7 +235,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   square: {fileID: 7766623005264184420}
-  light: {fileID: 8372336383606162034}
+  auraLight: {fileID: 8372336383606162034}
   SHAME: {r: 0.5471698, g: 0.1522784, b: 0.18530433, a: 1}
 --- !u!1 &8175816308322539307
 GameObject:
