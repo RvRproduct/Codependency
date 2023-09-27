@@ -431,7 +431,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3942374659808263987, guid: 687947aa4d609e744820175159a002b9, type: 3}
       propertyPath: m_SortingOrder
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7235903666047698564, guid: 687947aa4d609e744820175159a002b9, type: 3}
       propertyPath: m_BodyType
@@ -1226,6 +1226,8 @@ MonoBehaviour:
   canThrow: 0
   playerDist: 4
   followBounds: 3
+  NoFriction: {fileID: 6200000, guid: 1a23e7fc1a304da47b0eaf743b60ee8c, type: 2}
+  Bouncey: {fileID: 6200000, guid: 893a3a5afa850124bbadd34713c2747b, type: 2}
 --- !u!1001 &872332908
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1282,6 +1284,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: cubeA
       objectReference: {fileID: 0}
+    - target: {fileID: 8349718978031457632, guid: 8c944e443ef83ef489e3681f0426feb8, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 1a23e7fc1a304da47b0eaf743b60ee8c, type: 2}
     - target: {fileID: 8372336383606162034, guid: 8c944e443ef83ef489e3681f0426feb8, type: 3}
       propertyPath: m_LocalBounds.m_Center.x
       value: -0.0024999976
@@ -1726,6 +1732,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 759488587985089206, guid: e0087f0603a6a5e478c461c1c113f095, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: fdb21f76695e95b4d87e8372cad0e039, type: 2}
     - target: {fileID: 1234708533220671168, guid: e0087f0603a6a5e478c461c1c113f095, type: 3}
       propertyPath: m_Material
       value: 
@@ -1741,7 +1751,7 @@ PrefabInstance:
     - target: {fileID: 5630627453204248311, guid: e0087f0603a6a5e478c461c1c113f095, type: 3}
       propertyPath: m_Material
       value: 
-      objectReference: {fileID: 6200000, guid: 893a3a5afa850124bbadd34713c2747b, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 7262603309570535092, guid: e0087f0603a6a5e478c461c1c113f095, type: 3}
       propertyPath: m_LocalPosition.x
       value: -38.68

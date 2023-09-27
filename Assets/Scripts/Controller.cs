@@ -62,6 +62,10 @@ public class Controller : MonoBehaviour
     public float playerDist = 4f;
     public float followBounds = 3f;
 
+    // Materials
+    public PhysicsMaterial2D NoFriction;
+    public PhysicsMaterial2D Bouncey;
+
     
 
     void Start()
@@ -97,6 +101,7 @@ public class Controller : MonoBehaviour
     void Update()
     {
         UpdateCamera();
+        PlayerTwoBounciness();
         if (!canThrow)
         {
             SwipeTouch();
@@ -308,6 +313,17 @@ public class Controller : MonoBehaviour
         }
     }
 
+    void PlayerTwoBounciness()
+    {
+        if (followPlayer)
+        {
+            nonActivePlayer.GetComponent<BoxCollider2D>().sharedMaterial = NoFriction;
+        }
+        else
+        {
+            nonPlayer.GetComponent<BoxCollider2D>().sharedMaterial = Bouncey;
+        }
+    }
 }
 
 // OLD CODE
