@@ -97,8 +97,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.0030499995, y: 0.005850017, z: 0}
-    m_Extent: {x: 0.65205, y: 0.64945, z: 0}
+    m_Center: {x: -0.00075000525, y: -0.0015500188, z: 0}
+    m_Extent: {x: 0.65835, y: 0.65695, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -122,12 +122,15 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5781683799456786840}
+  - component: {fileID: 2368596728728167867}
   - component: {fileID: 8349718978031457632}
   - component: {fileID: 127206610970971045}
   - component: {fileID: 363094462142928874}
+  - component: {fileID: 4463413419093333336}
+  - component: {fileID: 1575627367045164227}
   m_Layer: 7
   m_Name: Player One
-  m_TagString: Untagged
+  m_TagString: cubeA
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -150,6 +153,24 @@ Transform:
   - {fileID: 2941277646519578624}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2368596728728167867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8083381430395741276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf390bdf36a60394ba2c4e0563c4ba20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  endscreen: {fileID: 0}
+  controller: {fileID: 0}
+  SHAME_LIMIT: 20
+  shameDamage: 1
+  healDist: 3
+  healRate: 2
 --- !u!61 &8349718978031457632
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -159,7 +180,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 8083381430395741276}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 1a23e7fc1a304da47b0eaf743b60ee8c, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -237,6 +258,39 @@ MonoBehaviour:
   square: {fileID: 7766623005264184420}
   light: {fileID: 8372336383606162034}
   SHAME: {r: 0.5471698, g: 0.1522784, b: 0.18530433, a: 1}
+--- !u!114 &4463413419093333336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8083381430395741276}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17a03e2e8a6d7254cbc060fb8a9f3b81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerB: {fileID: 0}
+  arrow: {fileID: 0}
+  detachDelay: 0.15
+  resetDelay: 0.5
+  pivot: {fileID: 127206610970971045}
+  arrowRotation: 0
+--- !u!114 &1575627367045164227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8083381430395741276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fe1cf5a142a21b41a37f9729e563cec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerOne: {fileID: 8083381430395741276}
+  playerTwo: {fileID: 0}
+  Distance: 0
 --- !u!1 &8175816308322539307
 GameObject:
   m_ObjectHideFlags: 0

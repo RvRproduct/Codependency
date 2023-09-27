@@ -582,6 +582,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 6782263312526964899, guid: 505d1e80be8172b489b1998b3db93ac8, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6782263312526964899, guid: 505d1e80be8172b489b1998b3db93ac8, type: 3}
       propertyPath: nearColors.Array.data[0].b
       value: 0.2607262
       objectReference: {fileID: 0}
