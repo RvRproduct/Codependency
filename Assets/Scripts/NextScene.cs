@@ -23,7 +23,7 @@ public class NextScene : MonoBehaviour
         foreach (SceneAsset scene in scenes)
         {
             sceneNames.Add(scene.name);
-            Debug.Log(scene.name);
+            // Debug.Log(scene.name);
         }
 
         TypeControlInScene();
@@ -42,7 +42,16 @@ public class NextScene : MonoBehaviour
 
             if (currentScene.name == scene)
             {
-                nextScene = sceneNames[sceneNames.IndexOf(scene) + 1];
+                if (sceneNames.Count > sceneNames.IndexOf(scene) + 1)
+                {
+                    nextScene = sceneNames[sceneNames.IndexOf(scene) + 1];
+                }
+                else
+                {
+                    nextScene = sceneNames[0];
+                }
+                
+                Debug.Log(nextScene);
             }
         }
     }
