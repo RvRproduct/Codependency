@@ -141,20 +141,20 @@ public class Controller : MonoBehaviour
         {
             if (touch.position.x < splittedScreen && touch.phase == TouchPhase.Stationary)
             {
-                Debug.Log("HELD L");
+                //Debug.Log("HELD L");
                 horizontal = -1f;
                 player.velocity = new Vector2(horizontal * speed, player.velocity.y);
             }
             else if (touch.position.x >= 2 * splittedScreen && touch.phase == TouchPhase.Stationary)
             {
-                Debug.Log("HELD R");
+               // Debug.Log("HELD R");
                 horizontal = 1f;
                 player.velocity = new Vector2(horizontal * speed, player.velocity.y);
             }
 
             else if (touch.position.x >= splittedScreen && touch.position.x < 2 * splittedScreen)
             {
-                Debug.Log("Middle");
+                //Debug.Log("Middle");
                 horizontal = 0f;
                 player.velocity = new Vector2(horizontal, player.velocity.y);
             }

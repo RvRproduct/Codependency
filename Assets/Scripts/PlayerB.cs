@@ -8,6 +8,7 @@ public class PlayerB : MonoBehaviour
     public Controller controller;
     private Transform over;
     ColorChange colorShifter;
+    ColorFlash colorFlasher;
 
     // shame stuff
     public float SHAME_LIMIT = 20;
@@ -20,6 +21,7 @@ public class PlayerB : MonoBehaviour
     void Start()
     {
         colorShifter = gameObject.GetComponent<ColorChange>();
+        colorFlasher = gameObject.GetComponent <ColorFlash>();
         over = endscreen.transform.Find("end");
     }
 
@@ -66,6 +68,9 @@ public class PlayerB : MonoBehaviour
 
         // adjust color
         colorShifter.UpdateColor(shameLevel / SHAME_LIMIT);
+
+        // color flash
+        colorFlasher.FlashColor();
 
         // if too much shame, gameOver
         if (shameLevel >= SHAME_LIMIT)

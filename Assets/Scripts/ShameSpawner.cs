@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ShameSpawner : MonoBehaviour
-{ 
+{
+    public float boundaryDist = 15f;
     public float shameThreshold = 4f;
     public float maxThreshold = 30f;
     public float baseShameInterval = 4f;
@@ -25,27 +26,35 @@ public class ShameSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timePassed += Time.deltaTime;
-        // spawn shame one bubble at a time if player close to partner
-        if (controller.playerDist < shameThreshold)
-        {
-            if (timePassed >= baseShameInterval) {
-                SpawnBubble();
-                timePassed = 0f;
-            }
-        }
-        else
-        {
-            // spawn more proportionally to the distance over the threshold, down to a minimum of 1 second
-            float distDiff = controller.playerDist - shameThreshold;
-            float deltaTime = maxTimeDelta * (distDiff / threshDiff);
+        Vector2 playerLoc = controller.activePlayer.transform.position;
 
-            if (timePassed >= baseShameInterval - Mathf.Min(deltaTime, maxTimeDelta))
+        // only spawn if the player is close enough
+        if (Vector2.Distance(playerLoc, transform.position) < boundaryDist)
+        {
+            timePassed += Time.deltaTime;
+            // spawn shame one bubble at a time if player close to partner
+            if (controller.playerDist < shameThreshold)
             {
-                SpawnBubble();
-                timePassed = 0f;
+                if (timePassed >= baseShameInterval)
+                {
+                    SpawnBubble();
+                    timePassed = 0f;
+                }
+            }
+            else
+            {
+                // spawn more proportionally to the distance over the threshold, down to a minimum of 1 second
+                float distDiff = controller.playerDist - shameThreshold;
+                float deltaTime = maxTimeDelta * (distDiff / threshDiff);
+
+                if (timePassed >= baseShameInterval - Mathf.Min(deltaTime, maxTimeDelta))
+                {
+                    SpawnBubble();
+                    timePassed = 0f;
+                }
             }
         }
+        
     }
 
     void SpawnBubble()
