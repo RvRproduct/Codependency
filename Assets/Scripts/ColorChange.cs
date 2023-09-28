@@ -5,9 +5,9 @@ using UnityEngine.Rendering.Universal;
 
 public class ColorChange : MonoBehaviour
 {
+    [SerializeField] Color SHAME = new Color(0.3686275f, 0, 0.5960785f);
     [SerializeField] SpriteRenderer square;
     [SerializeField] Light2D auraLight;
-    [SerializeField] Color SHAME = new Color(0.3686275f, 0, 0.5960785f);
     Color diff;
 
     // Start is called before the first frame update

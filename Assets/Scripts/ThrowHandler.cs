@@ -24,7 +24,7 @@ public class ThrowHandler : MonoBehaviour
 
     private Rigidbody2D arrowRigidbody;
     private Rigidbody2D currentPlayerRigidbody;
-    private SpringJoint2D currentPlayerSpringJoint;
+    
 
     private Camera mainCamera;
     private bool isDragging;
@@ -42,11 +42,7 @@ public class ThrowHandler : MonoBehaviour
 
         arrowRotation = targetIndicator.angle;
         arrowRigidbody = arrow.GetComponent<Rigidbody2D>();
-        currentPlayerSpringJoint = playerB.GetComponent<SpringJoint2D>();
-
         currentPlayerRigidbody.isKinematic = true;
-
-        currentPlayerSpringJoint.connectedBody = pivot;
         mainCamera = Camera.main;
 
         
@@ -166,7 +162,6 @@ public class ThrowHandler : MonoBehaviour
 
     void DetachPlayer()
     {
-        currentPlayerSpringJoint.enabled = false;
         // currentPlayerSpringJoint = null;
         controller.canThrow = false;
         Invoke(nameof(SolidPlayer), resetDelay);
@@ -186,7 +181,6 @@ public class ThrowHandler : MonoBehaviour
         // currentPlayerSpringJoint.enabled = true;
         playerB.transform.position = pivot.position;
         playerB.transform.rotation = Quaternion.identity;
-        currentPlayerSpringJoint.connectedBody = pivot;
 
     }
 }

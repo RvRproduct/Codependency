@@ -10,13 +10,7 @@ public class StartMenu : MonoBehaviour
     public GameObject block;
     private float counter = 1f;
     private bool started;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
     void Update()
     {
         if (started) 
@@ -31,12 +25,8 @@ public class StartMenu : MonoBehaviour
 
     public void StartGame()
     {
-        //AudioSource.PlayClipAtPoint(clip, this.transform.position, 1f);
         Time.timeScale = 1.0f;
         Destroy(block);
-        //counter -= Time,deltatime;
         started = true;
-        //SceneManager.LoadScene("Text 1");
-
     }
 }
