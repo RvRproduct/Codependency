@@ -1,10 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using static UnityEditor.Searcher.SearcherWindow.Alignment;
 using Scene = UnityEngine.SceneManagement.Scene;
 using Touch = UnityEngine.Touch;
 
@@ -23,7 +21,6 @@ public class NextScene : MonoBehaviour
         foreach (SceneAsset scene in scenes)
         {
             sceneNames.Add(scene.name);
-            // Debug.Log(scene.name);
         }
 
         TypeControlInScene();
