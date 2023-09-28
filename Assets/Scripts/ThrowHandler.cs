@@ -21,6 +21,7 @@ public class ThrowHandler : MonoBehaviour
     public Rigidbody2D pivot;
     public float arrowRotation;
 
+
     private Rigidbody2D arrowRigidbody;
     private Rigidbody2D currentPlayerRigidbody;
     private SpringJoint2D currentPlayerSpringJoint;
@@ -34,14 +35,13 @@ public class ThrowHandler : MonoBehaviour
     {
         controller = Controller.Instance;
         targetIndicator = TargetIndicator.Instance;
-        Debug.Log("Hello already ran");
+    Debug.Log("Hello already ran");
         playerB.transform.position = new Vector2(pivot.position.x, (pivot.position.y + 1.5f));
         playerB.transform.rotation = Quaternion.identity;
         arrow.transform.position = pivot.position;
 
         arrowRotation = targetIndicator.angle;
         arrowRigidbody = arrow.GetComponent<Rigidbody2D>();
-        currentPlayerRigidbody = playerB.GetComponent<Rigidbody2D>();
         currentPlayerSpringJoint = playerB.GetComponent<SpringJoint2D>();
 
         currentPlayerRigidbody.isKinematic = true;
@@ -54,6 +54,8 @@ public class ThrowHandler : MonoBehaviour
 
     void OnEnable()
     {
+        targetIndicator = TargetIndicator.Instance;
+        currentPlayerRigidbody = playerB.GetComponent<Rigidbody2D>();
         EnhancedTouchSupport.Enable();
         playerB.transform.position = new Vector2(pivot.position.x, (pivot.position.y + 1.5f));
         playerB.transform.rotation = Quaternion.identity;
@@ -115,11 +117,26 @@ public class ThrowHandler : MonoBehaviour
         Vector3 worldPosition = mainCamera.ScreenToWorldPoint(touchPosition);
 
         arrowRigidbody.position = worldPosition;
+
         Debug.Log("Here is the World P " + worldPosition);
 
 
 
     }
+
+    //void FixArrowPosition()
+    //{
+    //    if (targetIndicator.ShowDistance <= targetIndicator.HideDistance)
+    //    {
+    //        arrowRigidbody.position = worldPosition;
+    //        oldWorldPosition = worldPosition;
+    //    }
+    //    else
+    //    {
+    //        arrowRigidbody.position = oldWorldPosition;
+    //        Debug.Log(oldWorldPosition);
+    //    }
+    //}
 
     void LaunchPlayerNew()
     {

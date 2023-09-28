@@ -66,6 +66,10 @@ public class Controller : MonoBehaviour
     public PhysicsMaterial2D NoFriction;
     public PhysicsMaterial2D Bouncey;
 
+    // Camera
+    private float cameraDelay = 1f;
+    private bool cameraFollow;
+
     
 
     void Start()
@@ -84,7 +88,8 @@ public class Controller : MonoBehaviour
         player = activePlayer.GetComponent<Rigidbody2D>();
         nonPlayer = nonActivePlayer.GetComponent<Rigidbody2D>();
         camera = virtualCamera.GetComponent<CinemachineVirtualCamera>();
-        UpdateCamera();
+        WorkCamera();
+
 
     }
 
@@ -100,7 +105,6 @@ public class Controller : MonoBehaviour
 
     void Update()
     {
-        UpdateCamera();
         PlayerTwoBounciness();
         if (!canThrow)
         {
@@ -282,6 +286,11 @@ public class Controller : MonoBehaviour
     void UpdateCamera()
     {
         camera.Follow = activePlayer.transform;
+    }
+
+    void WorkCamera()
+    { 
+        Invoke(nameof(UpdateCamera), cameraDelay);
     }
 
     void FollowPlayer()
