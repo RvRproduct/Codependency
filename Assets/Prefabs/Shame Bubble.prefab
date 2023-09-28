@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 0.49769592, g: 0, b: 1, a: 1}
+  m_Color: {r: 0.5471698, g: 0.1522784, b: 0.18530433, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -99,8 +99,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
+  shameThreshold: 4
   player: {fileID: 0}
   partner: {fileID: 0}
+  controller: {fileID: 0}
 --- !u!58 &1247152343980439069
 CircleCollider2D:
   m_ObjectHideFlags: 0
