@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Parallax : MonoBehaviour
 {
-    [SerializeField] private Vector2 parallaxEffectMultiplier;
+    [SerializeField] private float parallaxEffectMultiplier;
     private Transform cameraTransform;
     private Vector3 lastCameraPosition;
 
@@ -16,7 +16,7 @@ public class Parallax : MonoBehaviour
 
     private void LateUpdate() {
         Vector3 deltaMovement = cameraTransform.position - lastCameraPosition;
-        transform.position += new Vector3(deltaMovement.x * parallaxEffectMultiplier.x, deltaMovement.y * parallaxEffectMultiplier.y);
+        transform.position += new Vector3(deltaMovement.x * parallaxEffectMultiplier, 0);
         lastCameraPosition = cameraTransform.position;
     }
 }
