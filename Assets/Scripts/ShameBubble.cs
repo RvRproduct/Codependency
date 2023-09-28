@@ -42,6 +42,7 @@ public class ShameBubble : MonoBehaviour
         if(collision.gameObject == partner && controller.playerDist <= shameThreshold)
         {
             Destroy(gameObject);
+            partner.GetComponent<ColorFlash>().FlashColor();
         }
     }
 }
