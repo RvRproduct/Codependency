@@ -97,8 +97,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.003399998, y: 0.003850013, z: 0}
-    m_Extent: {x: 0.65330005, y: 0.65105, z: 0}
+    m_Center: {x: -0.00075000525, y: -0.0015500188, z: 0}
+    m_Extent: {x: 0.65835, y: 0.65695, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -256,7 +256,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   square: {fileID: 7766623005264184420}
-  auraLight: {fileID: 8372336383606162034}
+  light: {fileID: 8372336383606162034}
   SHAME: {r: 0.5471698, g: 0.1522784, b: 0.18530433, a: 1}
 --- !u!114 &4463413419093333336
 MonoBehaviour:
