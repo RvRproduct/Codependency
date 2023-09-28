@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Background/Background Asset/B_L1-1.png.meta
 guid: 40f5a525514a09742912deb659664024
+========
+guid: fdf1c81aa1edcd446a0e9a4e1e3d3aef
+>>>>>>>> main:Assets/Background/Background Asset/B_L0.png.meta
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}

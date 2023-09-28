@@ -22,7 +22,7 @@ public class Controller : MonoBehaviour
     private float speed = 5f;
     private float jump = 10f;
     private bool isFacingRight = true;
-    private bool followPlayer = true;
+    public bool followPlayer = true;
 
     // Swipe Touch Controls
     private Vector3 fp;
@@ -38,8 +38,9 @@ public class Controller : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private TMP_Text textFollow;
 
-    // Throwing
+    // Instances
     private ThrowHandler throwHandler;
+    private PlayerDistance playerDistance;
 
     // Camera
     [SerializeField] private GameObject virtualCamera;
@@ -57,28 +58,38 @@ public class Controller : MonoBehaviour
     // Splitting The Screen 3 ways
     private int splittedScreen = Screen.width / 3;
 
-
-
     // distance between player and partner, used for following and shame spawning
     public float playerDist = 4f;
     public float followBounds = 3f;
 
+    // Materials
+    public PhysicsMaterial2D NoFriction;
+    public PhysicsMaterial2D Bouncey;
+
+    // Camera
+    private float cameraDelay = 1f;
+    private bool cameraFollow;
+
+    
 
     void Start()
     {
         Application.targetFrameRate = 60;
 
-        // Throwing
+        // Instance Sets
         throwHandler = ThrowHandler.Instance;
+        playerDistance = PlayerDistance.Instance;
         // Setup follow
         follow = controlUI.transform.Find("Follow").gameObject;
         followButton = follow.GetComponent<Button>();
         // Setup Touch, Player, Camera
         dragDistance = Screen.height * 30 / 100;
+        activePlayer.GetComponent<PlayerB>().controller = this;
         player = activePlayer.GetComponent<Rigidbody2D>();
         nonPlayer = nonActivePlayer.GetComponent<Rigidbody2D>();
         camera = virtualCamera.GetComponent<CinemachineVirtualCamera>();
-        UpdateCamera();
+        WorkCamera();
+
 
     }
 
@@ -94,7 +105,7 @@ public class Controller : MonoBehaviour
 
     void Update()
     {
-        UpdateCamera();
+        PlayerTwoBounciness();
         if (!canThrow)
         {
             SwipeTouch();
@@ -227,10 +238,10 @@ public class Controller : MonoBehaviour
                         if (lp.y > fp.y && IsGrounded())
                         {
                             player.velocity = new Vector2(player.velocity.x, jump);
-                            if (followPlayer)
-                            {
-                                nonPlayer.velocity = new Vector2(nonPlayer.velocity.x, jump);
-                            }
+                            // if (followPlayer)
+                            // {
+                                // nonPlayer.velocity = new Vector2(nonPlayer.velocity.x, jump);
+                            // }
 
                             // add hold touch for higher jumps?
                             // player.velocity = new Vector2(player.velocity.x, player.velocity.y * 0.5f);
@@ -241,12 +252,14 @@ public class Controller : MonoBehaviour
                             
                             Debug.Log("Swipe Down");
                             
-                            if (followPlayer)
+                            // Distance
+                            if (followPlayer && IsGrounded() && playerDistance.Distance < 3.0f)
                             {
-                                if (nonPlayer.GetComponent<SpringJoint2D>().enabled == false)
-                                {
-                                    throwHandler.ResetPlayer();
-                                }
+                                //if (nonPlayer.GetComponent<SpringJoint2D>().enabled == false)
+                                //{
+                                //    throwHandler.ResetPlayer();
+                                //}
+                               
                                 canThrow = true;
                                 followPlayer = false;
                                 ToggleFollow();
@@ -254,7 +267,7 @@ public class Controller : MonoBehaviour
                                 player.GetComponent<Collider2D>().enabled = false;
                                 player.GetComponent<ThrowHandler>().playerB = nonActivePlayer;
                                 player.GetComponent<ThrowHandler>().enabled = true;
-
+                              
                             }
                             
                   
@@ -275,16 +288,9 @@ public class Controller : MonoBehaviour
         camera.Follow = activePlayer.transform;
     }
 
-    void SwitchPlayer()
-    {
-        GameObject copyPlayer = activePlayer;
-        activePlayer = nonActivePlayer;
-        nonActivePlayer = copyPlayer;
-        player = activePlayer.GetComponent<Rigidbody2D>();
-        nonPlayer = nonActivePlayer.GetComponent<Rigidbody2D>();
-        horizontal = 0f;
-        nonPlayer.velocity = new Vector2(horizontal, player.velocity.y);
-
+    void WorkCamera()
+    { 
+        Invoke(nameof(UpdateCamera), cameraDelay);
     }
 
     void FollowPlayer()
@@ -295,7 +301,8 @@ public class Controller : MonoBehaviour
             // if distance greater than a certain boundary, follow behind
             if (playerDist > followBounds)
             {
-                nonPlayer.transform.position = Vector2.MoveTowards(nonPlayer.transform.position, player.transform.position, playerDist * Time.deltaTime);
+                float xPos = Vector2.MoveTowards(nonPlayer.transform.position, player.transform.position, playerDist * Time.deltaTime).x;
+                nonPlayer.transform.position = new Vector2(xPos, nonPlayer.transform.position.y);
             }
 
         }
@@ -315,7 +322,17 @@ public class Controller : MonoBehaviour
         }
     }
 
-
+    void PlayerTwoBounciness()
+    {
+        if (followPlayer)
+        {
+            nonActivePlayer.GetComponent<BoxCollider2D>().sharedMaterial = NoFriction;
+        }
+        else
+        {
+            nonPlayer.GetComponent<BoxCollider2D>().sharedMaterial = Bouncey;
+        }
+    }
 }
 
 // OLD CODE
@@ -357,5 +374,18 @@ public class Controller : MonoBehaviour
 //    {
 //        horizontal = 0f;
 //    }
+
+//}
+
+
+//void SwitchPlayer()
+//{
+//    GameObject copyPlayer = activePlayer;
+//    activePlayer = nonActivePlayer;
+//    nonActivePlayer = copyPlayer;
+//    player = activePlayer.GetComponent<Rigidbody2D>();
+//    nonPlayer = nonActivePlayer.GetComponent<Rigidbody2D>();
+//    horizontal = 0f;
+//    nonPlayer.velocity = new Vector2(horizontal, player.velocity.y);
 
 //}
