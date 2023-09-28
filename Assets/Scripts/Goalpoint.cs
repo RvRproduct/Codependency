@@ -10,9 +10,13 @@ public class Goalpoint : MonoBehaviour
     public GameObject endscreen;
     private Transform over;
     public int lvl;
+    private float counter = 3f;
+    private bool goals;
+    public Animator animator;
     // Start is called before the first frame update
     void Start()
     {
+        goals = false;
         Time.timeScale = 1.0f;
         over = endscreen.transform.Find("win");
 
@@ -21,7 +25,21 @@ public class Goalpoint : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Win();
+        if (cubeA && cubeB)
+        {
+            goals = true; 
+            animator.SetTrigger("goal");
+            //counter -= Time.deltaTime;
+        }
+        if (goals)
+        {
+            counter -= Time.deltaTime;
+        }
+        //counter -= Time.deltaTime;
+        if (counter < 0)
+        {
+            Win();
+        }
     }
 
 
@@ -51,24 +69,24 @@ public class Goalpoint : MonoBehaviour
 
     private void Win()
     {
-        if (cubeA && cubeB) 
-        {
-            if (lvl == 1)
+        
+        if (lvl == 1)
             {
-                Time.timeScale = 0f;
-                SceneManager.LoadScene("Level 2");
+                //Time.timeScale = 0f;
+                SceneManager.LoadScene("Text 2");
             }
-            else if (lvl == 2) {
-                Time.timeScale = 0f;
-                SceneManager.LoadScene("Level 3");
+         else if (lvl == 2) {
+                //Time.timeScale = 0f;
+                SceneManager.LoadScene("Text 3");
             }
-            else
+         else
             {
-                Time.timeScale = 0f;
+                //Time.timeScale = 0f;
                 //Debug.Log("You Win");
-                over.gameObject.SetActive(true);
+                SceneManager.LoadScene("Text End");
+                //over.gameObject.SetActive(true);
             }
-        }
+
     }
     public void Playagain()
     {

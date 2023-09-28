@@ -9,16 +9,42 @@ public class TargetIndicator : MonoBehaviour
     public float HideDistance;
     public float ShowDistance;
     public float angle;
+    public GameObject arrowFull;
+    public GameObject arrowPoint;
 
     public static TargetIndicator Instance;
+    private SpriteRenderer arrowPartOne;
+    private SpriteRenderer arrowPartTwo;
+
+    private Controller controller;
+    private ThrowHandler throwHandler;
 
     private void Awake()
     {
         Instance = this;
     }
 
+    private void Start()
+    {
+        controller = Controller.Instance;
+        throwHandler = ThrowHandler.Instance;
+        arrowPartOne = arrowFull.GetComponent<SpriteRenderer>();
+        arrowPartTwo = arrowPoint.GetComponent<SpriteRenderer>();
+    }
+
     void Update()
     {
+        if (controller.player.GetComponent<ThrowHandler>().enabled)
+        {
+            arrowPartOne.enabled = true;
+            arrowPartTwo.enabled = true;
+        }
+        else
+        {
+            arrowPartOne.enabled = false;
+            arrowPartTwo.enabled = false;
+        }
+
         var dir = Target.position - transform.position;
 
         ShowDistance = dir.magnitude; 
