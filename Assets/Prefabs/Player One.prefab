@@ -97,8 +97,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.0042999983, y: 0.00045001507, z: 0}
-    m_Extent: {x: 0.6535, y: 0.64975, z: 0}
+    m_Center: {x: 0.00034999847, y: 0.0029000044, z: 0}
+    m_Extent: {x: 0.65865, y: 0.6528, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -128,7 +128,6 @@ GameObject:
   - component: {fileID: 26465191896565803}
   - component: {fileID: 363094462142928874}
   - component: {fileID: 4463413419093333336}
-  - component: {fileID: 1575627367045164227}
   m_Layer: 7
   m_Name: Player One
   m_TagString: cubeA
@@ -166,7 +165,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf390bdf36a60394ba2c4e0563c4ba20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  endscreen: {fileID: 0}
   controller: {fileID: 0}
   SHAME_LIMIT: 20
   shameDamage: 1
@@ -293,21 +291,6 @@ MonoBehaviour:
   resetDelay: 0.5
   pivot: {fileID: 127206610970971045}
   arrowRotation: 0
---- !u!114 &1575627367045164227
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8083381430395741276}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4fe1cf5a142a21b41a37f9729e563cec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerOne: {fileID: 8083381430395741276}
-  playerTwo: {fileID: 0}
-  Distance: 0
 --- !u!1 &8175816308322539307
 GameObject:
   m_ObjectHideFlags: 0

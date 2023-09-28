@@ -4,8 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.EnhancedTouch;
-using UnityEngine.UI;
-using TMPro;
 using Touch = UnityEngine.Touch;
 using TouchPhase = UnityEngine.TouchPhase;
 
@@ -17,6 +15,7 @@ public class Controller : MonoBehaviour
     {
         Instance = this;
     }
+
     // Player Properites
     private float horizontal;
     private float speed = 5f;
@@ -32,15 +31,11 @@ public class Controller : MonoBehaviour
     // Managing Game Objects
     [SerializeField] public GameObject activePlayer;
     [SerializeField] public GameObject nonActivePlayer;
-    [SerializeField] private GameObject controlUI;
-    [SerializeField] private GameObject pivot;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
-    [SerializeField] private TMP_Text textFollow;
 
     // Instances
     private ThrowHandler throwHandler;
-    private PlayerDistance playerDistance;
 
     // Camera
     [SerializeField] private GameObject virtualCamera;
@@ -51,9 +46,6 @@ public class Controller : MonoBehaviour
     private Rigidbody2D nonPlayer;
     public bool canThrow;
 
-    // Follow?
-    private GameObject follow;
-    private Button followButton;
 
     // Splitting The Screen 3 ways
     private int splittedScreen = Screen.width / 3;
@@ -71,36 +63,18 @@ public class Controller : MonoBehaviour
     private bool cameraFollow;
 
     
-
     void Start()
     {
-        Application.targetFrameRate = 60;
-
         // Instance Sets
         throwHandler = ThrowHandler.Instance;
-        playerDistance = PlayerDistance.Instance;
-        // Setup follow
-        follow = controlUI.transform.Find("Follow").gameObject;
-        followButton = follow.GetComponent<Button>();
+
         // Setup Touch, Player, Camera
         dragDistance = Screen.height * 30 / 100;
         activePlayer.GetComponent<PlayerB>().controller = this;
         player = activePlayer.GetComponent<Rigidbody2D>();
         nonPlayer = nonActivePlayer.GetComponent<Rigidbody2D>();
         camera = virtualCamera.GetComponent<CinemachineVirtualCamera>();
-        WorkCamera();
-
-
-    }
-
-    void OnEnable()
-    {
-        EnhancedTouchSupport.Enable();
-    }
-
-    void OnDisable()
-    {
-        EnhancedTouchSupport.Disable();
+        Invoke(nameof(UpdateCamera), cameraDelay);
     }
 
     void Update()
@@ -122,7 +96,6 @@ public class Controller : MonoBehaviour
 
         if (!canThrow)
         {
-            ToggleFollow();
             ClickActions();
         }
     }
@@ -238,13 +211,10 @@ public class Controller : MonoBehaviour
                         if (lp.y > fp.y && IsGrounded())
                         {
                             player.velocity = new Vector2(player.velocity.x, jump);
-                            // if (followPlayer)
-                            // {
-                                // nonPlayer.velocity = new Vector2(nonPlayer.velocity.x, jump);
-                            // }
+                        
 
                             // add hold touch for higher jumps?
-                            // player.velocity = new Vector2(player.velocity.x, player.velocity.y * 0.5f);
+   
                             Debug.Log("Swipe UP");                      
                         }
                         else
@@ -253,25 +223,16 @@ public class Controller : MonoBehaviour
                             Debug.Log("Swipe Down");
                             
                             // Distance
-                            if (followPlayer && IsGrounded() && playerDistance.Distance < 3.0f)
+                            if (followPlayer && IsGrounded())
                             {
-                                //if (nonPlayer.GetComponent<SpringJoint2D>().enabled == false)
-                                //{
-                                //    throwHandler.ResetPlayer();
-                                //}
-                               
                                 canThrow = true;
                                 followPlayer = false;
-                                ToggleFollow();
                                 player.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
                                 player.GetComponent<Collider2D>().enabled = false;
                                 player.GetComponent<ThrowHandler>().playerB = nonActivePlayer;
                                 player.GetComponent<ThrowHandler>().enabled = true;
                               
                             }
-                            
-                  
-                            //SwitchPlayer();
                         }
                     }
                 }
@@ -288,11 +249,6 @@ public class Controller : MonoBehaviour
         camera.Follow = activePlayer.transform;
     }
 
-    void WorkCamera()
-    { 
-        Invoke(nameof(UpdateCamera), cameraDelay);
-    }
-
     void FollowPlayer()
     {
         if (followPlayer)
@@ -304,22 +260,7 @@ public class Controller : MonoBehaviour
                 float xPos = Vector2.MoveTowards(nonPlayer.transform.position, player.transform.position, playerDist * Time.deltaTime).x;
                 nonPlayer.transform.position = new Vector2(xPos, nonPlayer.transform.position.y);
             }
-
-        }
-        
-    }
-
-    void ToggleFollow()
-    {
-        followButton.onClick.AddListener(()=>followPlayer = !followPlayer);
-        if (followPlayer)
-        {
-            textFollow.text = "Following";
-        }
-        else
-        {
-            textFollow.text = "Not Following";
-        }
+        }   
     }
 
     void PlayerTwoBounciness()
@@ -333,59 +274,14 @@ public class Controller : MonoBehaviour
             nonPlayer.GetComponent<BoxCollider2D>().sharedMaterial = Bouncey;
         }
     }
+
+    void OnEnable()
+    {
+        EnhancedTouchSupport.Enable();
+    }
+
+    void OnDisable()
+    {
+        EnhancedTouchSupport.Disable();
+    }
 }
-
-// OLD CODE
-
-
-//private GameObject moveLeft;
-//private GameObject moveRight;
-
-//moveLeft = controlUI.transform.Find("Left").gameObject;
-//moveRight = controlUI.transform.Find("Right").gameObject;
-
-
-//void moveleft()
-//{
-//    if (moveleft.getcomponent<buttoncheck>().buttonpressed)
-//    {
-//        horizontal = -1f;
-//        player.velocity = new vector2(horizontal * speed, player.velocity.y);
-
-//    }
-//    else
-//    {
-//        horizontal = 0f;
-//        // this can only be called once since it doesn't need to check both buttons
-//        player.velocity = new vector2(horizontal, player.velocity.y);
-//    }
-
-
-//}
-
-//void moveright()
-//{
-//    if (moveright.getcomponent<buttoncheck>().buttonpressed)
-//    {
-//        horizontal = 1f;
-//        player.velocity = new vector2(horizontal * speed, player.velocity.y);
-//    }
-//    else
-//    {
-//        horizontal = 0f;
-//    }
-
-//}
-
-
-//void SwitchPlayer()
-//{
-//    GameObject copyPlayer = activePlayer;
-//    activePlayer = nonActivePlayer;
-//    nonActivePlayer = copyPlayer;
-//    player = activePlayer.GetComponent<Rigidbody2D>();
-//    nonPlayer = nonActivePlayer.GetComponent<Rigidbody2D>();
-//    horizontal = 0f;
-//    nonPlayer.velocity = new Vector2(horizontal, player.velocity.y);
-
-//}
