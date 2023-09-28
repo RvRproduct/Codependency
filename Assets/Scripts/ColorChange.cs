@@ -6,7 +6,7 @@ using UnityEngine.Rendering.Universal;
 public class ColorChange : MonoBehaviour
 {
     [SerializeField] SpriteRenderer square;
-    [SerializeField] Light2D light;
+    [SerializeField] Light2D auraLight;
     [SerializeField] Color SHAME = new Color(0.3686275f, 0, 0.5960785f);
     Color diff;
 
@@ -28,6 +28,6 @@ public class ColorChange : MonoBehaviour
         Color shadeDelta = diff * shameProp;
         Color shade = Color.white - shadeDelta;
         square.color = shade;
-        light.color = shade;
+        auraLight.color = shade;
     }
 }
