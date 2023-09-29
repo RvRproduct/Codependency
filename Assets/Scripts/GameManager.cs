@@ -50,6 +50,7 @@ public class GameManager : MonoBehaviour
 
     public void LoseGame()
     {
+        controller.menuActive = true;
         Time.timeScale = 0f;
         gameOverScreen.gameObject.SetActive(true);
     }
