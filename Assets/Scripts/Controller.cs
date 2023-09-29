@@ -62,6 +62,8 @@ public class Controller : MonoBehaviour
     private float cameraDelay = 1f;
     private bool cameraFollow;
 
+    // MenuState
+    public bool menuActive;
     
     void Start()
     {
@@ -79,6 +81,7 @@ public class Controller : MonoBehaviour
 
     void Update()
     {
+       
         PlayerTwoBounciness();
         if (!canThrow)
         {
@@ -87,6 +90,7 @@ public class Controller : MonoBehaviour
             FlipDirection();
             FollowPlayer();
         }
+        
     }
 
     void FixedUpdate()
@@ -238,7 +242,13 @@ public class Controller : MonoBehaviour
                 }
                 else
                 {
-                    followPlayer = !followPlayer;
+                    if (touch.position.x >= splittedScreen && touch.position.x < 2 * splittedScreen && !menuActive)
+                    {
+                        followPlayer = !followPlayer;
+                        Debug.Log("Touch Middle");
+                    }
+
+                    
                 }
             }
         }
