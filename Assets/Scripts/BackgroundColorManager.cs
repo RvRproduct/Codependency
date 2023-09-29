@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BackgroundColorManager : MonoBehaviour
 {
-    [SerializeField] Controller controller;
+    Controller controller;
     [SerializeField] float warningShiftBegin = 5f;        // minimum distance before background starts to change
     [SerializeField] float warningLength = 10f;       // range where background stops changing
     [SerializeField] float blackShiftStart = 5f;        // minimum distance before background starts to change
@@ -24,6 +24,7 @@ public class BackgroundColorManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        controller = Controller.Instance;
         warningShiftEnd = warningShiftBegin + warningLength;
         blackShiftBegin = warningShiftEnd + blackShiftStart;
         blackShiftEnd = blackShiftEnd + blackShiftStart;
