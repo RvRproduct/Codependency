@@ -11,7 +11,7 @@ public class BackgroundColorManager : MonoBehaviour
     [SerializeField] float blackShiftLength = 10f;       // range where background stops changing
     [SerializeField] Color[] nearColors = new Color[3];
     [SerializeField] Color[] farColors = new Color[3];
-    [SerializeField] SpriteRenderer baseLayer;
+    [SerializeField] SpriteRenderer[] baseLayers;
     [SerializeField] SpriteRenderer[] colorOne = new SpriteRenderer[3];
     [SerializeField] SpriteRenderer[] colorTwo = new SpriteRenderer[3];
     
@@ -68,7 +68,10 @@ public class BackgroundColorManager : MonoBehaviour
 
             }
 
-            baseLayer.color = newShades[0];
+            foreach(SpriteRenderer renderer in baseLayers)
+            {
+                renderer.color = newShades[0];
+            }
             foreach (SpriteRenderer renderer in colorOne)
             {
                 renderer.color = newShades[1];
@@ -95,7 +98,10 @@ public class BackgroundColorManager : MonoBehaviour
                 newShades[i] = farColors[i] + shadeDelta;
             }
 
-            baseLayer.color = newShades[0];
+            foreach (SpriteRenderer renderer in baseLayers)
+            {
+                renderer.color = newShades[0];
+            }
             foreach (SpriteRenderer renderer in colorOne)
             {
                 renderer.color = newShades[1];
