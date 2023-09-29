@@ -238,7 +238,7 @@ public class Controller : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("Tap");
+                    followPlayer = !followPlayer;
                 }
             }
         }
