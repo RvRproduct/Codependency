@@ -23,18 +23,4 @@ public class PlayerToPlayerCol : MonoBehaviour
         
     }
 
-    void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "cubeB")
-        {
-            Debug.Log("Hello there this is else");
-            controller.nonActivePlayer.GetComponent<BoxCollider2D>().isTrigger = false;
-            controller.nonActivePlayer.GetComponent<Rigidbody2D>().isKinematic = false;
-            controller.nonActivePlayer.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePosition;
-
-        }
-
-
-    }
-
 }
