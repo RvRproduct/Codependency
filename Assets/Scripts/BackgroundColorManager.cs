@@ -11,10 +11,10 @@ public class BackgroundColorManager : MonoBehaviour
     [SerializeField] float blackShiftLength = 10f;       // range where background stops changing
     [SerializeField] Color[] nearColors = new Color[3];
     [SerializeField] Color[] farColors = new Color[3];
-    [SerializeField] SpriteRenderer[] baseLayers;
-    [SerializeField] SpriteRenderer[] colorOne = new SpriteRenderer[3];
-    [SerializeField] SpriteRenderer[] colorTwo = new SpriteRenderer[3];
-    
+    [SerializeField] SpriteRenderer[] baseLayers = new SpriteRenderer[2];
+    [SerializeField] SpriteRenderer[] colorOne = new SpriteRenderer[6];
+    [SerializeField] SpriteRenderer[] colorTwo = new SpriteRenderer[6];
+
     Color[] colorDiffs = new Color[3];
     Color[] blackDiffs = new Color[3];
     float warningShiftEnd;
@@ -47,9 +47,9 @@ public class BackgroundColorManager : MonoBehaviour
 
         // find amount over the limit for color shift
         float diff = 0;
-        
+
         // warning shift
-        if(dist <= warningShiftEnd)
+        if (dist <= warningShiftEnd)
         {
             if (dist > warningShiftBegin)
             {
@@ -68,7 +68,7 @@ public class BackgroundColorManager : MonoBehaviour
 
             }
 
-            foreach(SpriteRenderer renderer in baseLayers)
+            foreach (SpriteRenderer renderer in baseLayers)
             {
                 renderer.color = newShades[0];
             }
@@ -81,7 +81,7 @@ public class BackgroundColorManager : MonoBehaviour
                 renderer.color = newShades[2];
             }
         }
-        else if(dist > blackShiftBegin)
+        else if (dist > blackShiftBegin)
         {
             // fade to black
             diff = dist - blackShiftBegin;

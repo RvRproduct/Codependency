@@ -256,7 +256,8 @@ public class Controller : MonoBehaviour
 
     void UpdateCamera()
     {
-        camera.Follow = activePlayer.transform;
+
+        camera.Follow = activePlayer.GetComponent<PlayerB>().cameraAim;
     }
 
     void FollowPlayer()
