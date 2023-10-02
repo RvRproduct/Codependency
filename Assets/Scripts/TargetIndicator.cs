@@ -6,7 +6,7 @@ using UnityEngine;
 public class TargetIndicator : MonoBehaviour
 {
     public Transform Target;
-    public float HideDistance;
+    public float HideDistance = 4;
     public float ShowDistance;
     public float angle;
     public GameObject arrowFull;
@@ -47,19 +47,22 @@ public class TargetIndicator : MonoBehaviour
 
         var dir = Target.position - transform.position;
 
-        ShowDistance = dir.magnitude; 
+        ShowDistance = dir.magnitude;
 
-        if (dir.magnitude > HideDistance)
-        {
-            SetChildrenActive(false);
-        }
-        else
-        {
-            SetChildrenActive(true);
+        angle = (Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg);
+        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
-            angle = (Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg);
-            transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-        }
+        //if (dir.magnitude > HideDistance)
+        //{
+        //    SetChildrenActive(false);
+        //}
+        //else
+        //{
+        //    SetChildrenActive(true);
+
+        //    angle = (Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg);
+        //    transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        //}
         
     }
 
