@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.EnhancedTouch;
@@ -16,15 +17,18 @@ public class ThrowHandler : MonoBehaviour
 
     public GameObject playerB;
     public GameObject arrow;
+    public GameObject arrowPos;
     public float detachDelay = 0.15f;
     public float resetDelay = 0.5f;
     public Rigidbody2D pivot;
     public float arrowRotation;
+    Vector3 worldPosition;
+    private bool arrowOrgPosition;
 
-
+    private Rigidbody2D arrowRigPos;
     private Rigidbody2D arrowRigidbody;
     private Rigidbody2D currentPlayerRigidbody;
-    
+
 
     private Camera mainCamera;
     private bool isDragging;
@@ -35,7 +39,7 @@ public class ThrowHandler : MonoBehaviour
     {
         controller = Controller.Instance;
         targetIndicator = TargetIndicator.Instance;
-    Debug.Log("Hello already ran");
+        Debug.Log("Hello already ran");
         playerB.transform.position = new Vector2(pivot.position.x, (pivot.position.y + 1.5f));
         playerB.transform.rotation = Quaternion.identity;
         arrow.transform.position = pivot.position;
@@ -45,12 +49,13 @@ public class ThrowHandler : MonoBehaviour
         currentPlayerRigidbody.isKinematic = true;
         mainCamera = Camera.main;
 
-        
+
     }
 
     void OnEnable()
     {
         targetIndicator = TargetIndicator.Instance;
+        arrowRigPos = arrowPos.GetComponent<Rigidbody2D>();
         currentPlayerRigidbody = playerB.GetComponent<Rigidbody2D>();
         EnhancedTouchSupport.Enable();
         playerB.transform.position = new Vector2(pivot.position.x, (pivot.position.y + 1.5f));
@@ -58,6 +63,9 @@ public class ThrowHandler : MonoBehaviour
         arrow.transform.position = pivot.position;
         arrowRotation = targetIndicator.angle;
         currentPlayerRigidbody.isKinematic = true;
+        currentPlayerRigidbody.velocity = Vector2.zero;
+
+        arrowRigPos.position = playerB.transform.position;
     }
 
     void OnDisable()
@@ -69,7 +77,7 @@ public class ThrowHandler : MonoBehaviour
     {
         arrowRotation = targetIndicator.angle;
 
-        
+
         if (currentPlayerRigidbody == null)
         {
             return;
@@ -110,9 +118,11 @@ public class ThrowHandler : MonoBehaviour
 
         touchPosition /= (Touch.activeTouches.Count - subtract);
 
-        Vector3 worldPosition = mainCamera.ScreenToWorldPoint(touchPosition);
+        worldPosition = mainCamera.ScreenToWorldPoint(touchPosition);
 
         arrowRigidbody.position = worldPosition;
+        SetArrowPosition();
+        
 
         Debug.Log("Here is the World P " + worldPosition);
 
@@ -120,24 +130,29 @@ public class ThrowHandler : MonoBehaviour
 
     }
 
-    //void FixArrowPosition()
-    //{
-    //    if (targetIndicator.ShowDistance <= targetIndicator.HideDistance)
-    //    {
-    //        arrowRigidbody.position = worldPosition;
-    //        oldWorldPosition = worldPosition;
-    //    }
-    //    else
-    //    {
-    //        arrowRigidbody.position = oldWorldPosition;
-    //        Debug.Log(oldWorldPosition);
-    //    }
-    //}
+    void MaxThrowPower()
+    {
+        if (targetIndicator.ShowDistance > targetIndicator.HideDistance)
+        {
+            targetIndicator.ShowDistance = targetIndicator.HideDistance;
+        }
 
+    }
+    void SetArrowPosition()
+    {
+        MaxThrowPower();
+        
+        arrowRigPos.position = new Vector3(playerB.transform.position.x + Mathf.Cos(Mathf.PI * 2 * (arrowRotation / 360)) * targetIndicator.ShowDistance,
+            playerB.transform.position.y + (Mathf.Sin(Mathf.PI * 2 * (arrowRotation / 360))) * targetIndicator.ShowDistance);
+        arrowPos.transform.rotation = arrow.transform.GetChild(0).transform.rotation;
+
+    }
     void LaunchPlayerNew()
     {
-        currentPlayerRigidbody.velocity = new Vector2(Mathf.Cos(Mathf.PI * 2 * (arrowRotation/360)) * (targetIndicator.ShowDistance * 2.5f),
-            Mathf.Sin(Mathf.PI * 2 * (arrowRotation/360)) * (targetIndicator.ShowDistance * 2.5f));
+        MaxThrowPower();
+        Debug.Log("Here is the Show Distance: " + targetIndicator.ShowDistance);
+        currentPlayerRigidbody.velocity = new Vector2(Mathf.Cos(Mathf.PI * 2 * (arrowRotation/360)) * (targetIndicator.ShowDistance * 3f),
+            Mathf.Sin(Mathf.PI * 2 * (arrowRotation/360)) * (targetIndicator.ShowDistance * 3f));
         currentPlayerRigidbody.isKinematic = false;
         Invoke(nameof(DetachPlayerNew), detachDelay);
     }

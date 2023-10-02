@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &884269498711146210
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2826329779838733741}
+  m_Layer: 0
+  m_Name: CameraAim
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2826329779838733741
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 884269498711146210}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5781683799456786840}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2461586344594228423
 GameObject:
   m_ObjectHideFlags: 0
@@ -97,8 +128,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.00034999847, y: 0.0029000044, z: 0}
-    m_Extent: {x: 0.65865, y: 0.6528, z: 0}
+    m_Center: {x: 0.0021499991, y: 0.007400006, z: 0}
+    m_Extent: {x: 0.65065, y: 0.65129995, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -151,6 +182,7 @@ Transform:
   - {fileID: 4843227517052646483}
   - {fileID: 3038207154387010890}
   - {fileID: 2941277646519578624}
+  - {fileID: 2826329779838733741}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2368596728728167867
@@ -166,6 +198,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 0}
+  cameraAim: {fileID: 2826329779838733741}
   SHAME_LIMIT: 20
   shameDamage: 1
   healDist: 3
@@ -287,6 +320,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerB: {fileID: 0}
   arrow: {fileID: 0}
+  arrowPos: {fileID: 0}
   detachDelay: 0.15
   resetDelay: 0.5
   pivot: {fileID: 127206610970971045}
