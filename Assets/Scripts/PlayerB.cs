@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerB : MonoBehaviour
 {
     public Controller controller;
+    public Transform cameraAim;
     private GameManager manager;
     ColorChange colorShifter;
     ColorFlash colorFlasher;
