@@ -10,7 +10,6 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] GameObject winScreen;
     [SerializeField] GameObject gameOverScreen;
-    [SerializeField] Text followingText;
 
     public int level;
     private Controller controller;
@@ -32,20 +31,6 @@ public class GameManager : MonoBehaviour
         // set GUI visibility
         winScreen.SetActive(false);
         gameOverScreen.SetActive(false);
-        followingText.gameObject.SetActive(true);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (controller.followPlayer)
-        {
-            followingText.text = "Following";
-        }
-        else
-        {
-            followingText.text = "Not Following";
-        }
     }
 
     public void LoseGame()

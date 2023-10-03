@@ -13,7 +13,11 @@ public class InfiniteBackground : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player = Controller.Instance.activePlayer;
+        if(Controller.Instance != null)
+        {
+            player = Controller.Instance.activePlayer;
+        }
+        
         width = ((backgroundOne[0].size.x * 2) * gameObject.transform.localScale.x) / 2;       // the sprite renderer won't automatically account for the scale on the parent object
         quarterWidth = width / 4;
     }

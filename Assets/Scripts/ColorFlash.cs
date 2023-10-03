@@ -7,10 +7,12 @@ using UnityEngine.Rendering.Universal;
 public class ColorFlash : MonoBehaviour
 {
     [SerializeField] float duration = 0.125f;
-    [SerializeField] Color flash;
+    [SerializeField] Color shameColor;
+    [SerializeField] Color followColor;
+    [SerializeField] Color unfollowColor;
     [SerializeField] SpriteRenderer square;
     [SerializeField] Light2D auraLight;
-    Color baseColor = Color.white;
+    Color flashColor;
     Color diff;
     bool recovering = false;
     float elapsed = 0;
@@ -20,10 +22,8 @@ public class ColorFlash : MonoBehaviour
     {
         if (recovering && elapsed <= duration)
         {
-            diff = flash - baseColor;
-
             Color shadeDelta = diff * (elapsed / duration);
-            Color shade = flash - shadeDelta;
+            Color shade = flashColor - shadeDelta;
             square.color = shade;
             auraLight.color = shade;
             elapsed += Time.deltaTime;
@@ -35,11 +35,34 @@ public class ColorFlash : MonoBehaviour
         }
     }
 
-    public void FlashColor()
+    public void FlashColor(Color baseline)
     {
-        baseColor = square.color;
-        square.color = flash;
-        auraLight.color = flash;
+        flashColor = shameColor;
+        diff = shameColor - baseline;
+        square.color = shameColor;
+        auraLight.color = shameColor;
+        recovering = true;
+        elapsed = 0;
+    }
+
+    // only for player two
+    public void FlashFollow()
+    {
+        flashColor = followColor;
+        diff = followColor - Color.white;
+        square.color = followColor;
+        auraLight.color = followColor;
+        recovering = true;
+        elapsed = 0;
+    }
+
+    // only for player two
+    public void FlashUnfollow()
+    {
+        flashColor = unfollowColor;
+        diff = unfollowColor - Color.white;
+        square.color = unfollowColor;
+        auraLight.color = unfollowColor;
         recovering = true;
         elapsed = 0;
     }

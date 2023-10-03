@@ -44,7 +44,7 @@ public class PlayerB : MonoBehaviour
         colorShifter.UpdateColor(shameLevel / SHAME_LIMIT);
 
         // color flash
-        colorFlasher.FlashColor();
+        colorFlasher.FlashColor(colorShifter.currentColor);
 
         // if too much shame, gameOver
         if (shameLevel >= SHAME_LIMIT)

@@ -128,8 +128,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.0021499991, y: 0.007400006, z: 0}
-    m_Extent: {x: 0.65065, y: 0.65129995, z: 0}
+    m_Center: {x: 0.0033000112, y: -0.0029500127, z: 0}
+    m_Extent: {x: 0.6534, y: 0.65015, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -288,7 +288,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   duration: 0.125
-  flash: {r: 0.5471698, g: 0.1522784, b: 0.18530433, a: 1}
+  shameColor: {r: 0.5471698, g: 0.1522784, b: 0.18530433, a: 1}
+  followColor: {r: 0, g: 0, b: 0, a: 0}
+  unfollowColor: {r: 0, g: 0, b: 0, a: 0}
   square: {fileID: 7766623005264184420}
   auraLight: {fileID: 8372336383606162034}
 --- !u!114 &363094462142928874
@@ -306,6 +308,7 @@ MonoBehaviour:
   SHAME: {r: 0.5471698, g: 0.1522784, b: 0.18530433, a: 1}
   square: {fileID: 7766623005264184420}
   auraLight: {fileID: 8372336383606162034}
+  currentColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &4463413419093333336
 MonoBehaviour:
   m_ObjectHideFlags: 0
