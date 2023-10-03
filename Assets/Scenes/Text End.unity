@@ -617,9 +617,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Co-dependency is a learned behavior that can be passed down from one generation
-    to another. It is an emotional and behavioral condition that affects an individual\u2019s
-    ability to have a healthy, mutually satisfying relationship."
+  m_Text: You and your box made it to the end together.
 --- !u!114 &917131503
 MonoBehaviour:
   m_ObjectHideFlags: 0
