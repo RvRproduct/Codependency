@@ -244,8 +244,18 @@ public class Controller : MonoBehaviour
                 {
                     if (touch.position.x >= splittedScreen && touch.position.x < 2 * splittedScreen && !menuActive)
                     {
+                        // switch following
                         followPlayer = !followPlayer;
-                        Debug.Log("Touch Middle");
+
+                        // flash a color to indicate - green for following, orange for not following
+                        if (followPlayer)
+                        {
+                            nonActivePlayer.GetComponent<ColorFlash>().FlashFollow();
+                        }
+                        else
+                        {
+                            nonActivePlayer.GetComponent<ColorFlash>().FlashUnfollow();
+                        }
                     }
 
                     

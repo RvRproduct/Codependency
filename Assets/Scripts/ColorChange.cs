@@ -9,6 +9,7 @@ public class ColorChange : MonoBehaviour
     [SerializeField] SpriteRenderer square;
     [SerializeField] Light2D auraLight;
     Color diff;
+    public Color currentColor = Color.white;
 
     // Start is called before the first frame update
     void Start()
@@ -16,17 +17,12 @@ public class ColorChange : MonoBehaviour
         diff = Color.white - SHAME;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     // takes in the proportion of shame the player has taken to calculate the new color
     public void UpdateColor(float shameProp)
     {
         Color shadeDelta = diff * shameProp;
         Color shade = Color.white - shadeDelta;
+        currentColor = shade;
         square.color = shade;
         auraLight.color = shade;
     }
