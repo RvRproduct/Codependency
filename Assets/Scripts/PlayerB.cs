@@ -17,11 +17,16 @@ public class PlayerB : MonoBehaviour
     public float healRate = 2;
     float shameLevel = 0;
 
+    // instances 
+    private SoundEffects soundEffects;
+    
+
     void Start()
     {
         colorShifter = gameObject.GetComponent<ColorChange>();
         colorFlasher = gameObject.GetComponent <ColorFlash>();
         manager = GameManager.instance;
+        soundEffects = SoundEffects.Instance;
     }
 
     void Update()
@@ -57,6 +62,8 @@ public class PlayerB : MonoBehaviour
     {
         if (collision.gameObject.tag == "spike")
         {
+            soundEffects.controller.GetComponent<AudioSource>().clip = soundEffects.audioClips[0];
+            soundEffects.controller.GetComponent<AudioSource>().Play();
             manager.LoseGame();
         }
     }

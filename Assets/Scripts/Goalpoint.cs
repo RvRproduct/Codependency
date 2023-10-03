@@ -12,11 +12,15 @@ public class Goalpoint : MonoBehaviour
     public Animator animator;
 
     private GameManager manager;
+    private SoundEffects soundEffects;
+
+    private bool wonLevel;
 
     // Start is called before the first frame update
     void Start()
     {
         manager = GameManager.instance;
+        soundEffects = SoundEffects.Instance;
         goals = false;
     }
 
@@ -25,6 +29,14 @@ public class Goalpoint : MonoBehaviour
     {
         if (cubeA && cubeB)
         {
+            if (!wonLevel)
+            {
+                wonLevel = true;
+                soundEffects.controller.GetComponent<AudioSource>().clip = soundEffects.audioClips[2];
+                soundEffects.controller.GetComponent<AudioSource>().Play();
+            }
+            
+
             goals = true; 
             animator.SetTrigger("goal");
         }

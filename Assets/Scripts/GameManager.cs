@@ -42,6 +42,7 @@ public class GameManager : MonoBehaviour
 
     public void WinLevel()
     {
+
         if (level == 1)
         {
             SceneManager.LoadScene("Text 2");
