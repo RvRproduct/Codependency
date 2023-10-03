@@ -1199,6 +1199,10 @@ PrefabInstance:
       value: Button 1 for Door 3
       objectReference: {fileID: 0}
     - target: {fileID: 5868856127608412893, guid: 1131b5050b4d16a4fb322175b583a612, type: 3}
+      propertyPath: isSolid
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5868856127608412893, guid: 1131b5050b4d16a4fb322175b583a612, type: 3}
       propertyPath: animator
       value: 
       objectReference: {fileID: 1571516402}
@@ -2977,6 +2981,10 @@ PrefabInstance:
       value: Button 2 for Door 3
       objectReference: {fileID: 0}
     - target: {fileID: 5868856127608412893, guid: 1131b5050b4d16a4fb322175b583a612, type: 3}
+      propertyPath: isSolid
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5868856127608412893, guid: 1131b5050b4d16a4fb322175b583a612, type: 3}
       propertyPath: animator
       value: 
       objectReference: {fileID: 1638233172}
@@ -3092,6 +3100,10 @@ PrefabInstance:
     - target: {fileID: 3845862986448703149, guid: 1131b5050b4d16a4fb322175b583a612, type: 3}
       propertyPath: m_Name
       value: Button for Door 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5868856127608412893, guid: 1131b5050b4d16a4fb322175b583a612, type: 3}
+      propertyPath: isSolid
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5868856127608412893, guid: 1131b5050b4d16a4fb322175b583a612, type: 3}
       propertyPath: trigger
