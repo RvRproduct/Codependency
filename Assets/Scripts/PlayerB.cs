@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class PlayerB : MonoBehaviour
 {
-    public GameObject endscreen;
     public Controller controller;
-    private Transform over;
+    public Transform cameraAim;
+    private GameManager manager;
     ColorChange colorShifter;
+    ColorFlash colorFlasher;
 
     // shame stuff
     public float SHAME_LIMIT = 20;
@@ -16,14 +17,13 @@ public class PlayerB : MonoBehaviour
     public float healRate = 2;
     float shameLevel = 0;
 
-    // Start is called before the first frame update
     void Start()
     {
         colorShifter = gameObject.GetComponent<ColorChange>();
-        over = endscreen.transform.Find("end");
+        colorFlasher = gameObject.GetComponent <ColorFlash>();
+        manager = GameManager.instance;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if(controller.playerDist <= healDist)
@@ -35,30 +35,6 @@ public class PlayerB : MonoBehaviour
         shameLevel = Mathf.Max(0, shameLevel);
     }
 
-    //detection of touch with spikes
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "spike")
-        {
-            Lose();
-        }
-    }
-
-    private void Lose()
-    {
-        Time.timeScale = 0f;
-        Debug.Log("You Lose");
-        over.gameObject.SetActive(true);
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "spike")
-        {
-            Lose();
-        }
-    }
-
     public void ShamePlayer()
     {
         // adjust health
@@ -67,10 +43,21 @@ public class PlayerB : MonoBehaviour
         // adjust color
         colorShifter.UpdateColor(shameLevel / SHAME_LIMIT);
 
+        // color flash
+        colorFlasher.FlashColor();
+
         // if too much shame, gameOver
         if (shameLevel >= SHAME_LIMIT)
         {
-            Lose();
+            manager.LoseGame();
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "spike")
+        {
+            manager.LoseGame();
         }
     }
 

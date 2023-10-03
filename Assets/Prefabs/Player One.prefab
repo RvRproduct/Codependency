@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &884269498711146210
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2826329779838733741}
+  m_Layer: 0
+  m_Name: CameraAim
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2826329779838733741
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 884269498711146210}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5781683799456786840}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2461586344594228423
 GameObject:
   m_ObjectHideFlags: 0
@@ -97,8 +128,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.00075000525, y: -0.0015500188, z: 0}
-    m_Extent: {x: 0.65835, y: 0.65695, z: 0}
+    m_Center: {x: 0.0021499991, y: 0.007400006, z: 0}
+    m_Extent: {x: 0.65065, y: 0.65129995, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -125,9 +156,9 @@ GameObject:
   - component: {fileID: 2368596728728167867}
   - component: {fileID: 8349718978031457632}
   - component: {fileID: 127206610970971045}
+  - component: {fileID: 26465191896565803}
   - component: {fileID: 363094462142928874}
   - component: {fileID: 4463413419093333336}
-  - component: {fileID: 1575627367045164227}
   m_Layer: 7
   m_Name: Player One
   m_TagString: cubeA
@@ -151,6 +182,7 @@ Transform:
   - {fileID: 4843227517052646483}
   - {fileID: 3038207154387010890}
   - {fileID: 2941277646519578624}
+  - {fileID: 2826329779838733741}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2368596728728167867
@@ -165,8 +197,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf390bdf36a60394ba2c4e0563c4ba20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  endscreen: {fileID: 0}
   controller: {fileID: 0}
+  cameraAim: {fileID: 2826329779838733741}
   SHAME_LIMIT: 20
   shameDamage: 1
   healDist: 3
@@ -243,6 +275,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &26465191896565803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8083381430395741276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef82cec178c6f7a4cb82212c2b717864, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 0.125
+  flash: {r: 0.5471698, g: 0.1522784, b: 0.18530433, a: 1}
+  square: {fileID: 7766623005264184420}
+  auraLight: {fileID: 8372336383606162034}
 --- !u!114 &363094462142928874
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -255,9 +303,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e65f478494de78641a20772f1661f92c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  square: {fileID: 7766623005264184420}
-  light: {fileID: 8372336383606162034}
   SHAME: {r: 0.5471698, g: 0.1522784, b: 0.18530433, a: 1}
+  square: {fileID: 7766623005264184420}
+  auraLight: {fileID: 8372336383606162034}
 --- !u!114 &4463413419093333336
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -272,25 +320,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerB: {fileID: 0}
   arrow: {fileID: 0}
+  arrowPos: {fileID: 0}
   detachDelay: 0.15
   resetDelay: 0.5
   pivot: {fileID: 127206610970971045}
   arrowRotation: 0
---- !u!114 &1575627367045164227
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8083381430395741276}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4fe1cf5a142a21b41a37f9729e563cec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerOne: {fileID: 8083381430395741276}
-  playerTwo: {fileID: 0}
-  Distance: 0
 --- !u!1 &8175816308322539307
 GameObject:
   m_ObjectHideFlags: 0
