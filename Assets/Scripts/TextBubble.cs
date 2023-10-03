@@ -6,7 +6,7 @@ using TMPro;
 
 public class TextBubble : MonoBehaviour
 {
-    public TMP_Text bubbleText;
+    public Text bubbleText;
     public GameObject bubble;
     public string text;
     private float bubbleDelay = 3f;
