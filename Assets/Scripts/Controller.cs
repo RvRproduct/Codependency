@@ -227,7 +227,7 @@ public class Controller : MonoBehaviour
                             Debug.Log("Swipe Down");
                             
                             // Distance
-                            if (followPlayer && IsGrounded())
+                            if (playerDist <= 2f && IsGrounded())
                             {
                                 canThrow = true;
                                 followPlayer = false;
