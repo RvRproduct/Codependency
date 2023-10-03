@@ -36,6 +36,8 @@ public class Controller : MonoBehaviour
 
     // Instances
     private ThrowHandler throwHandler;
+    private SoundEffects soundEffects;
+
 
     // Camera
     [SerializeField] private GameObject virtualCamera;
@@ -69,6 +71,7 @@ public class Controller : MonoBehaviour
     {
         // Instance Sets
         throwHandler = ThrowHandler.Instance;
+        soundEffects = SoundEffects.Instance;
 
         // Setup Touch, Player, Camera
         dragDistance = Screen.height * 30 / 100;
