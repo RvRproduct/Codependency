@@ -8,8 +8,10 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    [SerializeField] GameObject winScreen;
+    [SerializeField] GameObject pauseScreen;
     [SerializeField] GameObject gameOverScreen;
+    [SerializeField] GameObject helpScreen;
+    [SerializeField] Button pauseButton;
 
     public int level;
     private Controller controller;
@@ -29,8 +31,9 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
 
         // set GUI visibility
-        winScreen.SetActive(false);
+        pauseScreen.SetActive(false);
         gameOverScreen.SetActive(false);
+        helpScreen.SetActive(false);
     }
 
     public void LoseGame()
@@ -78,5 +81,30 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1.0f;
         SceneManager.LoadScene("Start Menu");
+    }
+
+    public void PauseGame()
+    {
+        Time.timeScale = 0f;
+        pauseScreen.SetActive(true);
+        pauseButton.gameObject.SetActive(false);
+    }
+
+    public void ResumeGame()
+    {
+        Time.timeScale = 1.0f;
+        pauseScreen.SetActive(false);
+        pauseButton.gameObject.SetActive(true);
+    }
+    public void DisplayTutorial()
+    {
+        helpScreen.SetActive(true);
+        pauseScreen.SetActive(false);
+    }
+
+    public void HideTutorial()
+    {
+        helpScreen.SetActive(false);
+        pauseScreen.SetActive(true);
     }
 }

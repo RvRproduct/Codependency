@@ -22,7 +22,8 @@ public class Trigger_shooter : MonoBehaviour
         if (collision.gameObject.tag == "cubeA" || collision.gameObject.tag == "cubeB")
         {
             Debug.Log("Here is the triggeer");
-            animator.SetTrigger("Press");
+            //animator.SetTrigger("Press");
+            animator.SetBool("Press3", true);
             shooter.GetComponent<SpikeShooter>().shutdown = true;
  
         }
