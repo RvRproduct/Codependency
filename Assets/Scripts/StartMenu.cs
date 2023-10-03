@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class StartMenu : MonoBehaviour
 {
     public GameObject block;
-    private float counter = 1f;
+    private float counter = 1.6f;
     private bool started;
 
     void Update()
