@@ -4,16 +4,21 @@ using UnityEngine;
 
 public class Trigger : MonoBehaviour
 {
-
-    //public GameObject door;
+    BoxCollider2D button;
     public Animator animator;
-    //public Animator animator2;
     public bool trigger;
     public bool onetime;
     public bool open;
     public bool isA;
+    public bool isSolid = true;
+
     void Start()
     {
+        button = GetComponents<BoxCollider2D>()[1];
+        if (!isSolid)
+        {
+            button.enabled = false;
+        }
         open = false;
     }
 
@@ -21,15 +26,11 @@ public class Trigger : MonoBehaviour
     {
         if (collision.gameObject.tag == "cubeA" || collision.gameObject.tag == "cubeB")
         {
-         
-            //Debug.Log("Here is the triggeer");
-            //animator2.SetTrigger("Door");
             if (collision.gameObject.tag == "cubeB")
             {
                 isA = true;
             }
-            //animator.ResetTrigger("Press2");
-            //animator.SetTrigger("Press");
+
             if (!animator.GetBool("Press3"))
             {
                 animator.SetBool("Press3", true);
