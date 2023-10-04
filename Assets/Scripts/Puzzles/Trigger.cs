@@ -14,7 +14,7 @@ public class Trigger : MonoBehaviour
 
     void Start()
     {
-        button = GetComponents<BoxCollider2D>()[1];
+        button = GetComponents<BoxCollider2D>()[0];
         if (!isSolid)
         {
             button.enabled = false;
