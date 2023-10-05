@@ -360,11 +360,11 @@ PrefabInstance:
     - target: {fileID: 596634304466654437, guid: 7be229be60bf58f4b83acfb9c4ae6fd6, type: 3}
       propertyPath: bubble
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1818077352}
     - target: {fileID: 596634304466654437, guid: 7be229be60bf58f4b83acfb9c4ae6fd6, type: 3}
       propertyPath: bubbleText
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 867382376}
     - target: {fileID: 948629490012404743, guid: 7be229be60bf58f4b83acfb9c4ae6fd6, type: 3}
       propertyPath: m_Name
       value: TextTrigger (2)
@@ -1502,12 +1502,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 3088, y: 1440}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -2693,6 +2693,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bf7759b293a9ca54e877d1ec24f8194a, type: 3}
+--- !u!114 &867382376 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7409619784786386435, guid: 5f06c46670d4d8f479d7140b518fd50b, type: 3}
+  m_PrefabInstance: {fileID: 1771104219}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &924750624
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4357,11 +4368,11 @@ PrefabInstance:
     - target: {fileID: 596634304466654437, guid: 7be229be60bf58f4b83acfb9c4ae6fd6, type: 3}
       propertyPath: bubble
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1818077352}
     - target: {fileID: 596634304466654437, guid: 7be229be60bf58f4b83acfb9c4ae6fd6, type: 3}
       propertyPath: bubbleText
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 867382376}
     - target: {fileID: 948629490012404743, guid: 7be229be60bf58f4b83acfb9c4ae6fd6, type: 3}
       propertyPath: m_Name
       value: TextTrigger (1)
@@ -4592,11 +4603,11 @@ PrefabInstance:
     - target: {fileID: 596634304466654437, guid: 7be229be60bf58f4b83acfb9c4ae6fd6, type: 3}
       propertyPath: bubble
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1818077352}
     - target: {fileID: 596634304466654437, guid: 7be229be60bf58f4b83acfb9c4ae6fd6, type: 3}
       propertyPath: bubbleText
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 867382376}
     - target: {fileID: 948629490012404743, guid: 7be229be60bf58f4b83acfb9c4ae6fd6, type: 3}
       propertyPath: m_Name
       value: TextTrigger
@@ -5456,6 +5467,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1809788691}
   m_CullTransparentMesh: 1
+--- !u!1 &1818077352 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6892529224608427999, guid: 5f06c46670d4d8f479d7140b518fd50b, type: 3}
+  m_PrefabInstance: {fileID: 1771104219}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1819066152
 PrefabInstance:
   m_ObjectHideFlags: 0
