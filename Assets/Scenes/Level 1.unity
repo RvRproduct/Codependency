@@ -1421,7 +1421,10 @@ MonoBehaviour:
   gameOverScreen: {fileID: 1230836464}
   helpScreen: {fileID: 1118682360}
   pauseButton: {fileID: 1958708241}
+  GameUi: {fileID: 5777795231113400579, guid: 5f06c46670d4d8f479d7140b518fd50b, type: 3}
+  GetCanvas: {fileID: 1316606223}
   level: 1
+  isPaused: 0
 --- !u!1001 &812971169
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2990,12 +2993,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96

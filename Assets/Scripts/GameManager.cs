@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject gameOverScreen;
     [SerializeField] GameObject helpScreen;
     [SerializeField] Button pauseButton;
+    [SerializeField] GameObject GameUi;
+    [SerializeField] GameObject GetCanvas;
 
     public int level;
     public bool isPaused;
@@ -115,5 +117,10 @@ public class GameManager : MonoBehaviour
     void DelayTouchControls()
     {
         isPaused = false;
+    }
+
+    void UpdateGameUiSize()
+    {
+        GameUi.GetComponent<RectTransform>().sizeDelta = GetCanvas.GetComponent<RectTransform>().sizeDelta;
     }
 }
