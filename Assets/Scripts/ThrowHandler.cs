@@ -32,6 +32,7 @@ public class ThrowHandler : MonoBehaviour
 
     private Camera mainCamera;
     private bool isDragging;
+    private bool launched;
 
     private Controller controller;
     private TargetIndicator targetIndicator;
@@ -39,7 +40,7 @@ public class ThrowHandler : MonoBehaviour
     {
         controller = Controller.Instance;
         targetIndicator = TargetIndicator.Instance;
-        Debug.Log("Hello already ran");
+        // Debug.Log("Hello already ran");
         playerB.transform.position = new Vector2(pivot.position.x, (pivot.position.y + 1.5f));
         playerB.transform.rotation = Quaternion.identity;
         arrow.transform.position = pivot.position;
@@ -54,6 +55,7 @@ public class ThrowHandler : MonoBehaviour
 
     void OnEnable()
     {
+        launched = true;
         targetIndicator = TargetIndicator.Instance;
         arrowRigPos = arrowPos.GetComponent<Rigidbody2D>();
         currentPlayerRigidbody = playerB.GetComponent<Rigidbody2D>();
@@ -64,7 +66,7 @@ public class ThrowHandler : MonoBehaviour
         arrowRotation = targetIndicator.angle;
         currentPlayerRigidbody.isKinematic = true;
         currentPlayerRigidbody.velocity = Vector2.zero;
-
+        isDragging = false;
         arrowRigPos.position = playerB.transform.position;
     }
 
@@ -95,8 +97,13 @@ public class ThrowHandler : MonoBehaviour
             return;
         }
 
+        if (!launched)
+        {
+            currentPlayerRigidbody.isKinematic = true;
+        }
+
         isDragging = true;
-        currentPlayerRigidbody.isKinematic = true;
+
 
         Vector2 touchPosition = new Vector2();
 
@@ -105,7 +112,7 @@ public class ThrowHandler : MonoBehaviour
 
         foreach (Touch touch in Touch.activeTouches)
         {
-            Debug.Log("Hello");
+            // Debug.Log("Hello");
             if (!screenBounds.Contains(touch.screenPosition))
             {
                 subtract++;
@@ -124,7 +131,7 @@ public class ThrowHandler : MonoBehaviour
         SetArrowPosition();
         
 
-        Debug.Log("Here is the World P " + worldPosition);
+        // Debug.Log("Here is the World P " + worldPosition);
 
 
 
@@ -149,18 +156,20 @@ public class ThrowHandler : MonoBehaviour
     }
     void LaunchPlayerNew()
     {
+        launched = true;
         MaxThrowPower();
         Debug.Log("Here is the Show Distance: " + targetIndicator.ShowDistance);
         currentPlayerRigidbody.velocity = new Vector2(Mathf.Cos(Mathf.PI * 2 * (arrowRotation/360)) * (targetIndicator.ShowDistance * 3f),
             Mathf.Sin(Mathf.PI * 2 * (arrowRotation/360)) * (targetIndicator.ShowDistance * 3f));
+        
         currentPlayerRigidbody.isKinematic = false;
         Invoke(nameof(DetachPlayerNew), detachDelay);
     }
 
     void DetachPlayerNew()
     {
-        SolidPlayer();
         controller.canThrow = false;
+        SolidPlayer();
         // controller.followPlayer = true;
         controller.player.GetComponent<ThrowHandler>().enabled = false;
     }
