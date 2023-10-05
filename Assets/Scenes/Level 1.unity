@@ -1422,6 +1422,7 @@ MonoBehaviour:
   helpScreen: {fileID: 1118682360}
   pauseButton: {fileID: 1958708241}
   level: 1
+  isPaused: 0
 --- !u!1001 &812971169
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2678,7 +2679,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5939674273237979728, guid: 5f06c46670d4d8f479d7140b518fd50b, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6228672651115108376, guid: 5f06c46670d4d8f479d7140b518fd50b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -2691,38 +2692,6 @@ PrefabInstance:
     - target: {fileID: 6228672651115108376, guid: 5f06c46670d4d8f479d7140b518fd50b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: GameManager, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 6806426590490005913, guid: 5f06c46670d4d8f479d7140b518fd50b, type: 3}
-      propertyPath: m_Pivot.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6806426590490005913, guid: 5f06c46670d4d8f479d7140b518fd50b, type: 3}
-      propertyPath: m_Pivot.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6806426590490005913, guid: 5f06c46670d4d8f479d7140b518fd50b, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6806426590490005913, guid: 5f06c46670d4d8f479d7140b518fd50b, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6806426590490005913, guid: 5f06c46670d4d8f479d7140b518fd50b, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6806426590490005913, guid: 5f06c46670d4d8f479d7140b518fd50b, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6806426590490005913, guid: 5f06c46670d4d8f479d7140b518fd50b, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 1265.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 6806426590490005913, guid: 5f06c46670d4d8f479d7140b518fd50b, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 585
       objectReference: {fileID: 0}
     - target: {fileID: 6892529224608427999, guid: 5f06c46670d4d8f479d7140b518fd50b, type: 3}
       propertyPath: m_IsActive
