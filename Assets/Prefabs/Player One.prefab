@@ -128,8 +128,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.0029499829, y: 0.0012999773, z: 0}
-    m_Extent: {x: 0.59535, y: 0.5981, z: 0}
+    m_Center: {x: 0.0063000023, y: 0.0038999915, z: 0}
+    m_Extent: {x: 0.5928, y: 0.5959, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -328,6 +328,7 @@ MonoBehaviour:
   resetDelay: 0.5
   pivot: {fileID: 127206610970971045}
   arrowRotation: 0
+  currentPlayerRigidbody: {fileID: 759488587985089206, guid: e0087f0603a6a5e478c461c1c113f095, type: 3}
 --- !u!1 &8175816308322539307
 GameObject:
   m_ObjectHideFlags: 0
