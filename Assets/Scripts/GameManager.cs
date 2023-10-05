@@ -12,8 +12,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject gameOverScreen;
     [SerializeField] GameObject helpScreen;
     [SerializeField] Button pauseButton;
-    [SerializeField] GameObject GameUi;
-    [SerializeField] GameObject GetCanvas;
 
     public int level;
     public bool isPaused;
@@ -24,7 +22,6 @@ public class GameManager : MonoBehaviour
         instance = this;
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         controller = Controller.Instance;
@@ -37,12 +34,16 @@ public class GameManager : MonoBehaviour
         pauseScreen.SetActive(false);
         gameOverScreen.SetActive(false);
         helpScreen.SetActive(false);
+
+        // Game  Ui Size
     }
 
     public void LoseGame()
     {
         controller.menuActive = true;
         Time.timeScale = 0f;
+        pauseScreen.SetActive(false);
+        pauseButton.gameObject.SetActive(false);
         gameOverScreen.gameObject.SetActive(true);
     }
 
@@ -119,8 +120,4 @@ public class GameManager : MonoBehaviour
         isPaused = false;
     }
 
-    void UpdateGameUiSize()
-    {
-        GameUi.GetComponent<RectTransform>().sizeDelta = GetCanvas.GetComponent<RectTransform>().sizeDelta;
-    }
 }
