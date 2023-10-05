@@ -31,12 +31,14 @@ public class Controller : MonoBehaviour
     // Managing Game Objects
     [SerializeField] public GameObject activePlayer;
     [SerializeField] public GameObject nonActivePlayer;
-    [SerializeField] private Transform groundCheck;
+    [SerializeField] private Transform groundCheckPlayerOne;
+    [SerializeField] private Transform groundCheckPlayerTwo;
     [SerializeField] private LayerMask groundLayer;
 
     // Instances
     private ThrowHandler throwHandler;
     private SoundEffects soundEffects;
+    private GameManager gameManager;
 
 
     // Camera
@@ -54,7 +56,7 @@ public class Controller : MonoBehaviour
 
     // distance between player and partner, used for following and shame spawning
     public float playerDist = 4f;
-    public float followBounds = 3f;
+    public float followBounds = 2f;
 
     // Materials
     public PhysicsMaterial2D NoFriction;
@@ -72,6 +74,7 @@ public class Controller : MonoBehaviour
         // Instance Sets
         throwHandler = ThrowHandler.Instance;
         soundEffects = SoundEffects.Instance;
+        gameManager = GameManager.instance;
 
         // Setup Touch, Player, Camera
         dragDistance = Screen.height * 30 / 100;
@@ -114,9 +117,14 @@ public class Controller : MonoBehaviour
 
     }
 
-    private bool IsGrounded()
+    private bool IsGroundedPlayerOne()
     {
-        return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
+        return Physics2D.OverlapCircle(groundCheckPlayerOne.position, 0.2f, groundLayer);
+    }
+
+    private bool IsGroundedPlayerTwo()
+    {
+        return Physics2D.OverlapCircle(groundCheckPlayerTwo.position, 0.2f, groundLayer);
     }
 
     void MoveTouch()
@@ -215,7 +223,7 @@ public class Controller : MonoBehaviour
                     }
                     else
                     {
-                        if (lp.y > fp.y && IsGrounded())
+                        if (lp.y > fp.y && IsGroundedPlayerOne())
                         {
                             player.velocity = new Vector2(player.velocity.x, jump);
                         
@@ -230,8 +238,9 @@ public class Controller : MonoBehaviour
                             Debug.Log("Swipe Down");
                             
                             // Distance
-                            if (playerDist <= followBounds && IsGrounded())
+                            if (playerDist <= followBounds && IsGroundedPlayerOne() && IsGroundedPlayerTwo() && !nonPlayer.isKinematic)
                             {
+                                Debug.Log("Calling This");
                                 canThrow = true;
                                 followPlayer = false;
                                 player.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
@@ -245,8 +254,12 @@ public class Controller : MonoBehaviour
                 }
                 else
                 {
-                    if (touch.position.x >= splittedScreen && touch.position.x < 2 * splittedScreen && !menuActive)
+                    if (touch.position.x >= splittedScreen && touch.position.x < 2 * splittedScreen 
+                        && !menuActive && IsGroundedPlayerTwo()
+                        && !nonPlayer.isKinematic
+                        && !gameManager.isPaused)
                     {
+                        Debug.Log("Calling Follow");
                         // switch following
                         followPlayer = !followPlayer;
 

@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] Button pauseButton;
 
     public int level;
+    public bool isPaused;
     private Controller controller;
 
     private void Awake()
@@ -87,6 +88,7 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 0f;
         pauseScreen.SetActive(true);
+        isPaused = true;
         pauseButton.gameObject.SetActive(false);
     }
 
@@ -94,6 +96,8 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1.0f;
         pauseScreen.SetActive(false);
+        Invoke(nameof(DelayTouchControls), 0.1f);
+        
         pauseButton.gameObject.SetActive(true);
     }
     public void DisplayTutorial()
@@ -106,5 +110,10 @@ public class GameManager : MonoBehaviour
     {
         helpScreen.SetActive(false);
         pauseScreen.SetActive(true);
+    }
+
+    void DelayTouchControls()
+    {
+        isPaused = false;
     }
 }
