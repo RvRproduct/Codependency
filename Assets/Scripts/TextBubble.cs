@@ -9,7 +9,7 @@ public class TextBubble : MonoBehaviour
     public Text bubbleText;
     public GameObject bubble;
     public string text;
-    private float bubbleDelay = 3f;
+    private float bubbleDelay = 5.5f;
     private bool triggered;
 
     void ChangeText()
