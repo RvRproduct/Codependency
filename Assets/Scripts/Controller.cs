@@ -255,10 +255,11 @@ public class Controller : MonoBehaviour
                 else
                 {
                     if (touch.position.x >= splittedScreen && touch.position.x < 2 * splittedScreen 
-                        && !menuActive && IsGroundedPlayerTwo()
+                        && !menuActive
                         && !nonPlayer.isKinematic
                         && !gameManager.isPaused)
                     {
+                        throwHandler.currentPlayerRigidbody.velocity = new Vector2(0, 0);
                         Debug.Log("Calling Follow");
                         // switch following
                         followPlayer = !followPlayer;
