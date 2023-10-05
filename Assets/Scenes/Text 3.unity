@@ -152,15 +152,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5d69f904cb084148a6ca1aeeca86a76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scenes:
-  - {fileID: 102900000, guid: e93110275f6906b4e939ea256ff4ecaf, type: 3}
-  - {fileID: 102900000, guid: 91240a0245314bd48b0d9da820eca30f, type: 3}
-  - {fileID: 102900000, guid: 2cda990e2423bbf4892e6590ba056729, type: 3}
-  - {fileID: 102900000, guid: 1cba35551350b5d47a0a26c88b2cebdb, type: 3}
-  - {fileID: 102900000, guid: 946678f69336f444f8d94b34b8e0ea3c, type: 3}
-  - {fileID: 102900000, guid: 1bac286f6afb1984bb3416774e8665b5, type: 3}
-  - {fileID: 102900000, guid: a14583250bc0bca4f9935035e82fcb36, type: 3}
-  - {fileID: 102900000, guid: 18bfdfd9bb8d2854395cea85435f4f66, type: 3}
 --- !u!4 &57881576
 Transform:
   m_ObjectHideFlags: 0
@@ -361,10 +352,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 3088, y: 1440}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
