@@ -5992,6 +5992,11 @@ SpringJoint2D:
   m_Distance: 16.88816
   m_DampingRatio: 0
   m_Frequency: 1
+--- !u!50 &1974040534 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 759488587985089206, guid: e0087f0603a6a5e478c461c1c113f095, type: 3}
+  m_PrefabInstance: {fileID: 1075790482}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1990350624 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7157593109921577955, guid: 505d1e80be8172b489b1998b3db93ac8, type: 3}
@@ -6393,6 +6398,10 @@ PrefabInstance:
       propertyPath: arrowPos
       value: 
       objectReference: {fileID: 2143530609}
+    - target: {fileID: 4463413419093333336, guid: 8c944e443ef83ef489e3681f0426feb8, type: 3}
+      propertyPath: currentPlayerRigidbody
+      value: 
+      objectReference: {fileID: 1974040534}
     - target: {fileID: 5781683799456786840, guid: 8c944e443ef83ef489e3681f0426feb8, type: 3}
       propertyPath: m_LocalPosition.x
       value: -20.2
