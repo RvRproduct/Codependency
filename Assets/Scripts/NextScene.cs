@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -9,7 +10,7 @@ using Touch = UnityEngine.Touch;
 public class NextScene : MonoBehaviour
 {
 
-    public List<SceneAsset> scenes;
+    // private Scene[] scenes;
     private List<string> sceneNames;
     private Scene currentScene;
     private string nextScene;
@@ -18,10 +19,21 @@ public class NextScene : MonoBehaviour
     {
         sceneNames = new List<string>();
         currentScene = SceneManager.GetActiveScene();
-        foreach (SceneAsset scene in scenes)
-        {
-            sceneNames.Add(scene.name);
-        }
+        sceneNames.Add("Start Menu");
+        sceneNames.Add("Level 1");
+        sceneNames.Add("Text 1");
+        sceneNames.Add("Level 1");
+        sceneNames.Add("Text 2");
+        sceneNames.Add("Level 2");
+        sceneNames.Add("Text 3");
+        sceneNames.Add("Level 3");
+        sceneNames.Add("Text End");
+
+        //foreach (Scene scene in scenes)
+        //{
+        //    Debug.Log(scene.name);
+        //    sceneNames.Add(scene.name);
+        //}
 
         TypeControlInScene();
     }
