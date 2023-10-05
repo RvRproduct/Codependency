@@ -27,7 +27,7 @@ public class ThrowHandler : MonoBehaviour
 
     private Rigidbody2D arrowRigPos;
     private Rigidbody2D arrowRigidbody;
-    private Rigidbody2D currentPlayerRigidbody;
+    public Rigidbody2D currentPlayerRigidbody;
 
 
     private Camera mainCamera;
