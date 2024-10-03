@@ -1,6 +1,7 @@
 using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.EnhancedTouch;
@@ -87,7 +88,15 @@ public class Controller : MonoBehaviour
 
     void Update()
     {
-       
+    #if UNITY_ANDROID || UNITY_IOS
+        HandleTouchInput();
+    #elif UNITY_STANDALONE || UNITY_WEBGL
+        HandleMouseInput();
+    #endif
+    }
+
+    void HandleTouchInput()
+    {
         PlayerTwoBounciness();
         if (!canThrow)
         {
@@ -96,7 +105,18 @@ public class Controller : MonoBehaviour
             FlipDirection();
             FollowPlayer();
         }
-        
+    }
+
+    void HandleMouseInput()
+    {
+        PlayerTwoBounciness();
+        if (!canThrow)
+        {
+            MouseSwipe();
+            MoveMouse();
+            FlipDirection();
+            FollowPlayer();
+        }
     }
 
     void FixedUpdate()
@@ -104,27 +124,28 @@ public class Controller : MonoBehaviour
         // find distance between partner and player. Other systems rely on this, so always needs to happen
         playerDist = Vector2.Distance(activePlayer.transform.position, nonPlayer.transform.position);
 
+    #if UNITY_ANDROID || UNITY_IOS
         if (!canThrow)
         {
             ClickActions();
         }
+    #endif
     }
 
 
     void ClickActions()
     {
         MoveTouch();
-
     }
 
     private bool IsGroundedPlayerOne()
     {
-        return Physics2D.OverlapCircle(groundCheckPlayerOne.position, 0.2f, groundLayer);
+        return Physics2D.OverlapCircle(groundCheckPlayerOne.position, 0.3f, groundLayer);
     }
 
     private bool IsGroundedPlayerTwo()
     {
-        return Physics2D.OverlapCircle(groundCheckPlayerTwo.position, 0.2f, groundLayer);
+        return Physics2D.OverlapCircle(groundCheckPlayerTwo.position, 0.3f, groundLayer);
     }
 
     void MoveTouch()
@@ -153,6 +174,35 @@ public class Controller : MonoBehaviour
 
         }
 
+    }
+
+    void MoveMouse()
+    {
+        if (Input.GetMouseButton(0)) // 0 is the left mouse button
+        {
+            Vector3 mousePosition = Input.mousePosition;
+
+            if (mousePosition.x < splittedScreen)
+            {
+                horizontal = -1f;  // Move left
+                player.velocity = new Vector2(horizontal * speed, player.velocity.y);
+            }
+            else if (mousePosition.x >= 2 * splittedScreen)
+            {
+                horizontal = 1f;  // Move right
+                player.velocity = new Vector2(horizontal * speed, player.velocity.y);
+            }
+            else if (mousePosition.x >= splittedScreen && mousePosition.x < 2 * splittedScreen)
+            {
+                horizontal = 0f;  // Stop
+                player.velocity = new Vector2(horizontal, player.velocity.y);
+            }
+        }
+        else
+        {
+            horizontal = 0f; // Stop movement when mouse button is not held
+            player.velocity = new Vector2(horizontal, player.velocity.y);
+        }
     }
 
     void ScreenTouch()
@@ -281,9 +331,88 @@ public class Controller : MonoBehaviour
         }
     }
 
+    void MouseSwipe()
+    {
+        if (Input.GetMouseButtonDown(0)) // Mouse button pressed
+        {
+            fp = Input.mousePosition; // Record the first click position
+            lp = Input.mousePosition; // Initially, the last position is the same
+        }
+        else if (Input.GetMouseButton(0)) // Mouse button held
+        {
+            lp = Input.mousePosition; // Update last position as the mouse is moved
+        }
+        else if (Input.GetMouseButtonUp(0)) // Mouse button released
+        {
+            lp = Input.mousePosition;
+
+            if (Mathf.Abs(lp.x - fp.x) > dragDistance || Mathf.Abs(lp.y - fp.y) > dragDistance)
+            {
+                if (Mathf.Abs(lp.x - fp.x) > Mathf.Abs(lp.y - fp.y))
+                {
+                    if (lp.x > fp.x)
+                    {
+                        Debug.Log("Mouse Swipe Right");
+                    }
+                    else
+                    {
+                        Debug.Log("Mouse Swipe Left");
+                    }
+                }
+                else
+                {
+                    if (lp.y > fp.y && IsGroundedPlayerOne())
+                    {
+                        player.velocity = new Vector2(player.velocity.x, jump);
+                        Debug.Log("Mouse Swipe Up");
+                    }
+                    else  // Swipe down
+                    {
+                        Debug.Log("Mouse Swipe Down");
+
+                        // Additional conditions, similar to your original touch logic
+                        if (playerDist <= followBounds && IsGroundedPlayerOne() && IsGroundedPlayerTwo() && !nonPlayer.isKinematic)
+                        {
+                            Debug.Log("Calling This");
+                            canThrow = true;
+                            followPlayer = false;
+                            player.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+                            player.GetComponent<Collider2D>().enabled = false;
+                            player.GetComponent<ThrowHandler>().playerB = nonActivePlayer;
+                            player.GetComponent<ThrowHandler>().enabled = true;
+                        }
+                    }
+                }
+            }
+            else  // Handle a "tap" in the middle section (like a single click)
+            {
+                if (lp.x >= splittedScreen && lp.x < 2 * splittedScreen
+                    && !menuActive
+                    && !nonPlayer.isKinematic
+                    && !gameManager.isPaused)
+                {
+                    throwHandler.currentPlayerRigidbody.velocity = Vector2.zero;
+                    Debug.Log("Calling Follow");
+
+                    // Switch following logic
+                    followPlayer = !followPlayer;
+
+                    // Flash color to indicate follow state
+                    if (followPlayer)
+                    {
+                        nonActivePlayer.GetComponent<ColorFlash>().FlashFollow();
+                    }
+                    else
+                    {
+                        nonActivePlayer.GetComponent<ColorFlash>().FlashUnfollow();
+                    }
+                }
+            }
+        }
+    }
+
     void UpdateCamera()
     {
-
         camera.Follow = activePlayer.GetComponent<PlayerB>().cameraAim;
     }
 

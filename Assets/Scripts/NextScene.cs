@@ -40,6 +40,11 @@ public class NextScene : MonoBehaviour
 
     void Update()
     {
+    #if UNITY_ANDROID || UNITY_IOS
+        ScreenTapMoveScene();
+    #elif UNITY_STANDALONE || UNITY_WEBGL
+        MouseTapMoveScene();
+    #endif
         ScreenTapMoveScene();
     }
 
@@ -75,6 +80,14 @@ public class NextScene : MonoBehaviour
             {
                 SceneManager.LoadScene(nextScene);
             }
+        }
+    }
+
+    void MouseTapMoveScene()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            SceneManager.LoadScene(nextScene);
         }
     }
 

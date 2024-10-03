@@ -77,6 +77,15 @@ public class ThrowHandler : MonoBehaviour
 
     void Update()
     {
+#if UNITY_ANDROID || UNITY_IOS
+        TouchThrow();
+#elif UNITY_STANDALONE || UNITY_WEBGL
+        MouseThrow();
+    #endif
+    }
+
+    void TouchThrow()
+    {
         arrowRotation = targetIndicator.angle;
 
 
@@ -112,7 +121,6 @@ public class ThrowHandler : MonoBehaviour
 
         foreach (Touch touch in Touch.activeTouches)
         {
-            // Debug.Log("Hello");
             if (!screenBounds.Contains(touch.screenPosition))
             {
                 subtract++;
@@ -129,12 +137,46 @@ public class ThrowHandler : MonoBehaviour
 
         arrowRigidbody.position = worldPosition;
         SetArrowPosition();
-        
+    }
 
-        // Debug.Log("Here is the World P " + worldPosition);
+    void MouseThrow()
+    {
+        arrowRotation = targetIndicator.angle;
 
+        if (currentPlayerRigidbody == null)
+        {
+            return;
+        }
 
+        // Handle mouse button up (release) for launching the player
+        if (Input.GetMouseButtonUp(0))  // Left mouse button released
+        {
+            if (isDragging)
+            {
+                LaunchPlayerNew();
+            }
 
+            isDragging = false;
+            return;
+        }
+
+        // Set Rigidbody to kinematic while dragging (not launched)
+        if (!launched)
+        {
+            currentPlayerRigidbody.isKinematic = true;
+        }
+
+        isDragging = true;
+
+        // Get mouse position
+        Vector2 mousePosition = Input.mousePosition;
+
+        // Convert the screen position to world position using the camera
+        worldPosition = mainCamera.ScreenToWorldPoint(mousePosition);
+
+        // Set the position of the arrow to the world position
+        arrowRigidbody.position = worldPosition;
+        SetArrowPosition();
     }
 
     void MaxThrowPower()
